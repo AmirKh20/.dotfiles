@@ -3,4 +3,3 @@ moc-pulse
 zsh-theme-powerlevel10k-git
 dracula-gtk-theme
 lightdm-webkit2-theme-glorious
-
