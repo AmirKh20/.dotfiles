@@ -1,1 +1,0 @@
-/home/amir/Downloads/Programs/luke-st/config.h
