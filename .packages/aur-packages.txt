@@ -1,0 +1,4 @@
+picom-jonaburg-git
+moc-pulse
+zsh-theme-powerlevel10k-git
+dracula-gtk-theme
