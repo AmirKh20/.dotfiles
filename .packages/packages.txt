@@ -9,9 +9,14 @@ kvantum-qt5
 awesome
 neovim
 vim
+nodejs
+go
 qt5ct
 qutebrowser
 zsh
+zsh-syntax-highlighting
+zsh-autosuggestions
+fzf
 vifm
 zathura
 ranger
