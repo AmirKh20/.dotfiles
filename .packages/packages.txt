@@ -1,6 +1,8 @@
 git
 lightdm
 numlockx
+lxsession
+network-manager-applet
 python-pip
 kvantum-qt5
 awesome
@@ -22,4 +24,4 @@ sxiv
 python-pywal
 xorg-xrdb
 xorg-xinit
-
+xorg-xset
