@@ -1,0 +1,15 @@
+#!/bin/bash
+
+file=$(echo "$4" | sed "s/\.flac$\|\.mp3$\|\.aac$\|\.m4a$\|\.ape$\|\.ogg$//")
+
+if   [ "$1" = "gl" ]; then
+      glyrc lyrics -t "$2" -a "$3" -w "$file"
+elif [ "$1" = "copy" ] && [ -f "$file" ]; then
+       xsel -b < "$file"
+elif [ "$1" = "show" ] && [ -f "$file" ]; then
+      bat --paging=always "$file"
+elif [ "$1" = "cly" ]; then
+      clyrics -m | tee "$file"
+else
+      exit 1
+fi

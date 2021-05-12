@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/bin/ls "$HOME"/.fonts/figletfonts | shuf -n 1 | xargs -I % bash -c "{ figlet -cktf % "$1" && echo %;}"

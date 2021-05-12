@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ "$1" = "" ]; then
+    sxiv -t -r ~/Pictures/Wallpapers -o | xargs -I % bash -c '{ xwallpaper --zoom "%" && ln -sf "%" ~/Pictures/bg; }'
+
+# python-pywall is needed for this option
+elif [ "$1" = "wal" ]; then
+    sxiv -t -r ~/Pictures/Wallpapers -o | xargs -I % bash -c '{ xwallpaper --zoom "%" && wal -i "%" && ln -sf "%" ~/Pictures/bg; }'
+
+elif [ "$1" = "dir" ]; then
+    sxiv -t "$1" -o | xargs -I % bash -c '{ xwallpaper --zoom "%" && wal -i "%" && ln -sf "%" ~/Pictures/bg; }'
+
+elif [ "$1" = "random" ]; then
+    /usr/bin/ls -d ~/Pictures/Wallpapers/* | shuf -n 1 | xargs -I % bash -c '{ xwallpaper --zoom "%" && ln -sf "%" ~/Pictures/bg; }'
+else
+  echo "Error wrong option" && exit 1
+fi

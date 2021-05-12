@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "$1" = "cpu" || "$1" = "mem" ]]
+then
+	ps axch -o cmd:15,%"$1" --sort=-%"$1" | head | sed 's/$/%/g'
+else
+	echo "Wrong Input!" && exit 1
+fi
