@@ -33,7 +33,7 @@ xrdb .Xresources &
 #   xsetroot -name "$(dwm_status)"
 #   sleep 1m    # Update time every minute
 #done &
-#/home/amir/Downloads/Programs/dwmblocks/dwmblocks &
+#$HOME/Downloads/Programs/dwmblocks/dwmblocks &
 
 #exec dwm
 exec awesome

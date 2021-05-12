@@ -19,5 +19,5 @@ case "$clock" in
 esac
 
 time=$(date +'%a %R')
-jal_date=$(/home/amir/.local/bin/scripts/aw-date)
+jal_date=$("$HOME"/.local/bin/scripts/aw-date)
 echo "$jal_date" "$time" "$icon"
