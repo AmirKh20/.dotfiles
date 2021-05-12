@@ -1,0 +1,5 @@
+[General]
+theme=Dracula
+
+[Applications]
+Dracula=dolphin
