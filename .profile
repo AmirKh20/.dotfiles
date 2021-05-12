@@ -10,6 +10,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export STARDICT_DATA_DIR="$XDG_DATA_HOME"
 export TERMINAL="st"
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 #Manpager
 ## "bat" as manpager
