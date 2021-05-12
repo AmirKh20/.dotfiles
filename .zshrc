@@ -1,0 +1,120 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+#typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
+#powerlevel10k prompt
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# Use powerline
+#USE_POWERLINE="true"
+
+#stty stop undef		# Disable ctrl-s to freeze terminal.
+
+# History in cache directory:
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.cache/zsh/zsh_history
+
+#source the aliases file
+source ~/.config/shell/aliases
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select () {
+    case $KEYMAP in
+        vicmd) echo -ne '\e[1 q';;      # block
+        viins|main) echo -ne '\e[5 q';; # beam
+    esac
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+     case $1 in
+       *.tar.bz2)   tar xjf $1   ;;
+       *.tar.gz)    tar xzf $1   ;;
+       *.bz2)       bunzip2 $1   ;;
+       *.rar)       unrar x $1     ;;
+       *.gz)        gunzip $1    ;;
+       *.tar)       tar xf $1    ;;
+       *.tbz2)      tar xjf $1   ;;
+       *.tgz)       tar xzf $1   ;;
+       *.zip)       unzip $1     ;;
+       *.Z)         uncompress $1;;
+       *.7z)        7z x $1      ;;
+       *)           echo "'$1' cannot be extracted via ex()" ;;
+     esac
+   else
+     echo "'$1' is not a valid file"
+   fi
+}
+
+cs() {
+  if [ "$1" = "" ]; then
+      cd ~/ && ls
+  else
+      cd "$1" && ls
+  fi
+}
+
+# zsh-syntax-highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# autojump
+source /usr/share/autojump/autojump.zsh
+
+#zsh auto complete
+##source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+
+#My   GOOD MORNING/AFTERNOON/NIGHT SHELL STARTUP
+# ~/MyProjects/Scripts/shell-startup/startup.sh
+
+#dt shell-color-script
+#colorscript -r
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

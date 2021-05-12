@@ -1,0 +1,87 @@
+#aliases
+
+## listing aliases
+#alias ls='ls -h --color=auto'
+alias ls='exa -l --color=always --group-directories-first --icons'
+alias la='exa -al --color=always --group-directories-first --icons'
+alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+alias l.='exa -a | egrep "^\."'
+
+## intractive mode
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -Iv'
+
+alias cl='clear'
+alias df='df -h'
+alias fr='free -mh --si'
+alias sp='speedtest --no-upload --bytes'
+
+#gir aliases
+##for managing dotfiles
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+## Windcribe aliases
+alias wss='windscribe status'
+alias wsc='windscribe connect'
+alias wsl='windscribe login'
+alias wsdc='windscribe disconnect'
+
+alias grep='grep --color=auto -i'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+source ~/.config/shell/shortcuts
+alias ..='cd ..'
+alias ...='cd ../..'
+alias 3.='cd ../../..'
+
+alias lvs='sudo lvs'
+alias pvs='sudo pvs'
+
+alias reboot='sudo reboot'
+
+# Pass
+alias pi='pass insert -m'
+alias p='pass'
+alias pgc='pass generate -c'
+
+# youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+alias :q='exit'
+
+alias locate='locate -i'
+alias vifm='$HOME/.config/vifm/scripts/vifmrun'
+
+alias espeak='espeak -s 120'
+
+#alias emacs='emacsclient -c'
+
+alias nv="nvim"
+
+alias ss='systemctl status'
+alias se='sudo systemctl enable'
+
+alias chup="checkupdates && checkupdates-aur"
+alias trayer="trayer --edge top --align right --height 11 --width 2"
+
+#Package Manager Stuff
+alias pacs='sudo pacman -S'
+alias pacrns='sudo pacman -Rns'
+alias pacr='sudo pacman -R'
+
+alias parufzfI="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed"
+alias pacfzfI="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+alias pacQ="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | pacman -Qi -"
+alias parufzfR="paru -Qi | awk '/^Name/{name=\$3} /^Installed Size/{print \$4\$5, name}' | sort -hr | awk '{print \$2}' | fzf --multi --preview 'paru -Qi {1}' | xargs -I % st -e bash -c 'paru -Rns \"%\" && read'"
+alias manfzf="man -k . -s 1 | awk '{print \$1}' | fzf --multi --preview 'man {1}' | xargs -r man"
+alias diff='diff --color=auto'

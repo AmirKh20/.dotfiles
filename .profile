@@ -1,0 +1,32 @@
+
+#export nvim as default editor
+export VISUAL=nvim
+export EDITOR=$VISUAL
+
+export VIDEOPLAYER="mpv"
+export BROWSER="qutebrowser"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export STARDICT_DATA_DIR="$XDG_DATA_HOME"
+export TERMINAL="st"
+
+#Manpager
+## "bat" as manpager
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+### "nvim" as manpager
+export MANPAGER="nvim -c 'set ft=man' -"
+
+## "vim" as manpager
+# export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
+
+#export emac.d directory to PATH
+#export PATH="$HOME/.emacs.d/bin:$PATH"
+
+# export .local/bin to PATH
+export PATH="$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/bin/statusbar:$PATH"
+
+#export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
+
+export PATH="$PATH:$HOME/inst/bin/"

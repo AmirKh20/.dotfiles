@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Home</title>
+    <link rel="stylesheet" href="../styles/homepage.css">
+    <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <div id="search">
+        <input id="search-field" type="text" name="search-field"/>
+    </div>
+    <div class="container">
+        <div id="clock"></div>
+        <div class="weather-container">
+            <div class="row">
+                <div id="weather-description"class="inline"></div>
+                <div class="inline">-</div>
+                <div id="temp" class="inline"></div>
+            </div>
+        </div>
+        <div class="bookmark-container">
+            <div class="bookmark-set">
+                <div class="bookmark-title">Linux News</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://www.linuxtoday.com/" target="_blank">LinuxToday</a>
+                    <a class="bookmark" href="https://www.linuxinsider.com/" target="_blank">LinuxInsider</a>
+                    <a class="bookmark" href="https://itsfoss.com/" target="_blank">It's Foss</a>
+                    <a class="bookmark" href="https://phoronix.com/" target="_blank">Phoronix</a>
+                    <a class="bookmark" href="https://www.zdnet.com/topic/linux/" target="_blank">ZDNet</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Arch Linux</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://www.archlinux.org/" target="_blank">Arch Homepage</a>
+                    <a class="bookmark" href="https://wiki.archlinux.org/" target="_blank">Arch Wiki</a>
+                    <a class="bookmark" href="https://www.archlinux.org/packages/" target="_blank">Arch Packages</a>
+                    <a class="bookmark" href="https://aur.archlinux.org/" target="_blank">AUR Home</a>
+                    <a class="bookmark" href="https://bugs.archlinux.org/" target="_blank">Arch Bugs</a>
+                    <a class="bookmark" href="https://bbs.archlinux.org/" target="_blank">Arch Forums</a>
+                    <a class="bookmark" href="https://www.archlinux.org/planet/" target="_blank">Planet Arch</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Torrent</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://www.torrentleech.org/" target="_blank">TorrentLeech</a>
+                    <a class="bookmark" href="https://panel.bitso.ir/index" target="_blank">Bitso</a>
+                    <a class="bookmark" href="https://1337x.to/" target="_blank">1337x</a>
+                    <a class="bookmark" href="http://rarbg.to/index80.php" target="_blank">RARBG</a>
+                    <a class="bookmark" href="https://yts.mx/" target="_blank">YIFY</a>
+                    <a class="bookmark" href="https://thepiratebay.us.org/en/" target="_blank">PirateBay</a>
+                    <a class="bookmark" href="https://psa.one/" target="_blank">PSA</a>
+                    <a class="bookmark" href="https://skytorrents.to/" target="_blank">Sky Toreent</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Social & Video</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://subscene.com/" target="_blank">Subscene</a>
+                    <a class="bookmark" href="https://youtube.com/" target="_blank">Youtube</a>
+                    <a class="bookmark" href="https://lbry.tv/" target="_blank">LBRY</a>
+                    <a class="bookmark" href="https://github.com" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search on enter key event
+        getTime = () => {
+            let date = new Date(),
+                min = date.getMinutes(),
+                sec = date.getSeconds(),
+                hour = date.getHours();
+
+            return "" +
+                (hour < 10 ? ("0" + hour) : hour) + ":" +
+                (min < 10 ? ("0" + min) : min) + ":" +
+                (sec < 10 ? ("0" + sec) : sec);
+        }
+
+        window.onload = () => {
+            let xhr = new XMLHttpRequest();
+            // Set up the clock
+            document.getElementById("clock").innerHTML = getTime();
+            // Set clock interval to tick clock
+            setInterval( () => {
+                document.getElementById("clock").innerHTML = getTime();
+            },100);
+        }
+
+    </script>
+</body>
+</html>
