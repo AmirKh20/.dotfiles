@@ -1,4 +1,7 @@
 git
+lightdm
+numlockx
+python-pip
 kvantum-qt5
 awesome
 neovim
@@ -13,6 +16,7 @@ figlet
 glyr
 xsel
 bat
+exa
 xwallpaper
 sxiv
 python-pywal
