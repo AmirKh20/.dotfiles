@@ -1,3 +1,4 @@
+git
 kvantum-qt5
 awesome
 neovim
