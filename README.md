@@ -1,6 +1,6 @@
 My Dotfiles
 
-These are heavily inspired by [DT](https://gitlab.com/dwt1)
+These are heavily inspired by [DT](https://gitlab.com/dwt1) And [Luke Smith](https://github.com/lukesmithxyz)
 
 # Awesome Wm
 
