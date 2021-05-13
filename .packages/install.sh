@@ -12,9 +12,9 @@ paru -S --needed - < aur-packages.txt &&
 
 pip install -r pip-packages.txt &&
 
-[ ! -d ~/.vim/bundle ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall &&
-[ -d ~/.config/st/luke-st ] && cd ~/.config/st/luke-st/ && make && sudo make install &&
-[ -d ~/.config/dmenu/luke-dmenu ] && cd ~/.config/dmenu/luke-dmenu && make && sudo make install &&
+[ ! -d ~/.vim/bundle ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall
+[ -d ~/.config/st/luke-st ] && cd ~/.config/st/luke-st/ && make && sudo make install
+[ -d ~/.config/dmenu/luke-dmenu ] && cd ~/.config/dmenu/luke-dmenu && make && sudo make install
 
 grep -q "^Color" /etc/pacman.conf || sudo sed -i "s/^#Color$/Color/" /etc/pacman.conf
 grep -q "^VerbosePkgLists" /etc/pacman.conf || sudo sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
