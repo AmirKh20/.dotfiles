@@ -1,4 +1,6 @@
 xorg-server
+man-db
+mlocate
 git
 lightdm
 numlockx
