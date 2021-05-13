@@ -6,3 +6,5 @@ lightdm-webkit2-theme-glorious
 autojump
 nerd-fonts-source-code-pro
 nerd-fonts-mononoki
+fkill
+libxft-bgra

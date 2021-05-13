@@ -1,4 +1,6 @@
-#/bin/sh
+#!/bin/sh
+[ ! -f ~/.packages ] && exit 1
+
 sudo pacman -S --needed - < packages.txt &&
 
 sudo pacman -S --needed base-devel &&
@@ -33,5 +35,7 @@ sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlock
 
 [ ! -d ~/.cache/zsh ] && mkdir -p ~/.cache/zsh/
 [ ! -f ~/.cache/zsh/zsh_history ] && touch ~/.cache/zsh/zsh_history
+[ ! -d ~/Pictures ] && mkdir ~/Pictures
+ln -s ~/.config/awesome/themes/powerarrow-blue/starwars.jpg ~/Pictures/bg
 
 chsh -s /bin/zsh
