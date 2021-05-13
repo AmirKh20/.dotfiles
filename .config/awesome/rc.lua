@@ -135,7 +135,7 @@ mymainmenu = freedesktop.menu.build({
          { "Terminal", terminal },
          { "Log out", function() awesome.quit() end },
          { "Sleep", "systemctl suspend" },
-         { "Restart", "systemctl reboot" },
+         { "Reboot", "systemctl reboot" },
          { "Poweroff", "systemctl poweroff" },
          -- other triads can be put here
      }
