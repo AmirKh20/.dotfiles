@@ -35,3 +35,5 @@ xorg-xinit
 xorg-xset
 noto-fonts
 noto-fonts-emoji
+pulsemixer
+alsa-utils

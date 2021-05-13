@@ -33,3 +33,5 @@ sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlock
 
 [ ! -d ~/.cache/zsh ] && mkdir -p ~/.cache/zsh/
 [ ! -f ~/.cache/zsh/zsh_history ] && touch ~/.cache/zsh/zsh_history
+
+chsh -s /bin/zsh
