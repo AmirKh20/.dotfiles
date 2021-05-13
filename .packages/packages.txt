@@ -31,3 +31,5 @@ python-pywal
 xorg-xrdb
 xorg-xinit
 xorg-xset
+noto-fonts
+noto-fonts-emoji

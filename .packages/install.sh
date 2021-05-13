@@ -29,5 +29,5 @@ sudo systemctl enable lightdm
 grep -q "lightdm-webkit2-greeter" /etc/lightdm/lightdm.conf || sudo sed -i "s/^#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/" /etc/lightdm/lightdm.conf
 grep -q "glorious" /etc/lightdm/lightdm-webkit2-greeter.conf || sudo sed -i "s/^webkit_theme.*/webkit_theme        = glorious/" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i "s/^debug_mode.*/debug_mode          = true/" /etc/lightdm/lightdm-webkit2-greeter.conf
-sudo sed -i "s/^greeter-setup-script.*/greeter-setup-script=/usr/bin/numlockx on/" /etc/lightdm/lightdm.conf
+sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlockx on/" /etc/lightdm/lightdm.conf
 
