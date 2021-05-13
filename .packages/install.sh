@@ -1,5 +1,5 @@
 #!/bin/sh
-[ ! -f ~/.packages ] && exit 1
+[ ! -d ~/.packages ] && exit 1
 
 sudo pacman -S --needed - < packages.txt &&
 
