@@ -31,3 +31,5 @@ grep -q "glorious" /etc/lightdm/lightdm-webkit2-greeter.conf || sudo sed -i "s/^
 sudo sed -i "s/^debug_mode.*/debug_mode          = true/" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlockx on/" /etc/lightdm/lightdm.conf
 
+[ ! -d ~/.cache/zsh ] && mkdir -p ~/.cache/zsh/
+[ ! -f ~/.cache/zsh/zsh_history ] && touch ~/.cache/zsh/zsh_history

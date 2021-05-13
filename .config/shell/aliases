@@ -31,7 +31,7 @@ alias grep='grep --color=auto -i'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-source ~/.config/shell/shortcuts
+[ -f ~/.config/shell/shortcuts ] && source ~/.config/shell/shortcuts
 alias ..='cd ..'
 alias ...='cd ../..'
 alias 3.='cd ../../..'
