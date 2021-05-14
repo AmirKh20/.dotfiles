@@ -39,8 +39,6 @@ alias 3.='cd ../../..'
 alias lvs='sudo lvs'
 alias pvs='sudo pvs'
 
-alias reboot='sudo reboot'
-
 # Pass
 alias pi='pass insert -m'
 alias p='pass'
