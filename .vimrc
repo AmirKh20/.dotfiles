@@ -16,7 +16,6 @@ call vundle#begin()
     Plugin 'vim-python/python-syntax'                    " Python highlighting
     Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'itchyny/lightline.vim' "lightline stausbar
-    Plugin 'frazrepo/vim-rainbow'
     "Themes"
     Plugin 'dracula/vim', { 'name': 'dracula' }
     Plugin 'wadackel/vim-dogrun'
@@ -34,7 +33,7 @@ call vundle#begin()
     Plugin 'junegunn/fzf.vim'
     Plugin 'metakirby5/codi.vim'
     Plugin 'honza/vim-snippets'
-    Plugin 'ap/vim-buftabline'
+    Plugin 'ap/vim-buftabline' "Lists Buffers as tabs
     Plugin 'justinmk/vim-sneak'
 
 call vundle#end()            " required
