@@ -1,4 +1,5 @@
 #!/bin/sh
+[ "$USER" = "root" ] && echo "Do Not Run this with root!" && exit 1
 [ ! -d ~/.packages ] && exit 1
 
 sudo pacman -S --needed - < packages.txt &&
