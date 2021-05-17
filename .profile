@@ -30,4 +30,4 @@ export PATH="$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/bin/statusba
 
 #export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
-export PATH="$PATH:$HOME/inst/bin/"
+[ -d ~/inst/bin ] && export PATH="$PATH:$HOME/inst/bin/"
