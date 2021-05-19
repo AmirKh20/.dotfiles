@@ -11,6 +11,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export STARDICT_DATA_DIR="$XDG_DATA_HOME"
 export TERMINAL="st"
 export QT_QPA_PLATFORMTHEME=qt5ct
+export TDESKTOP_USE_GTK_FILE_DIALOG=1
 
 #Manpager
 ## "bat" as manpager
