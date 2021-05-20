@@ -385,13 +385,11 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end),
 
     -- Alsa volume control
-    --awful.key({ modkey1 }, "Up",
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
             os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end),
-    --awful.key({ modkey1 }, "Down",
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
             os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel))
