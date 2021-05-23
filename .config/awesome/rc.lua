@@ -556,6 +556,9 @@ awful.rules.rules = {
     { rule = { class = "xdman-Main" },
             properties = { floating = true} },
 
+    { rule = { class = "persepolis" },
+            properties = { floating = true} },
+
     { rule = { class = "mocp" },
             properties = { tag = " " }},
 

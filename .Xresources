@@ -1,4 +1,5 @@
 !*.alpha: 0.8
+!*.font: "DejaVu Sans Mono"
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
 *.background: #282A36
