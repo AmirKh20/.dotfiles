@@ -41,3 +41,4 @@ alsa-utils
 lxappearance
 htop
 pacman-contrib
+python-adblock
