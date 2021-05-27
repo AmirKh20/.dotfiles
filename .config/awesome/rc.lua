@@ -413,7 +413,7 @@ globalkeys = gears.table.join(
         {description = "Launchs vifm" , group = "applications" }),
 
     -- Launchs pcmanfm
-    awful.key({ modkey  }, "e", function () awful.util.spawn( "pcmanfm" ) end,
+    awful.key({ modkey  }, "f", function () awful.util.spawn( "pcmanfm" ) end,
         {description = "Launchs pcmanfm" , group = "applications" }),
 
     -- Launchs Telegram
@@ -560,7 +560,7 @@ awful.rules.rules = {
             properties = { floating = true} },
 
     { rule = { class = "mocp" },
-            properties = { tag = " " }},
+            properties = { tag = " " , opacity = 0.8 }},
 
     { rule = { instance = "qutebrowser" },
             properties = { tag = " " } },
