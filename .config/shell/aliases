@@ -75,7 +75,7 @@ alias trayer="trayer --edge top --align right --height 11 --width 2"
 #Package Manager Stuff
 alias pacs='sudo pacman -S'
 alias pacrns='sudo pacman -Rns'
-alias pacr='sudo pacman -R'
+alias pacsyu='sudo pacman -Syu'
 
 alias parufzfI="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed"
 alias pacfzfI="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"

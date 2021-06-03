@@ -62,29 +62,49 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# # ex - archive extractor
-# # usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-     case $1 in
-       *.tar.bz2)   tar xjf $1   ;;
-       *.tar.gz)    tar xzf $1   ;;
-       *.bz2)       bunzip2 $1   ;;
-       *.rar)       unrar x $1     ;;
-       *.gz)        gunzip $1    ;;
-       *.tar)       tar xf $1    ;;
-       *.tbz2)      tar xjf $1   ;;
-       *.tgz)       tar xzf $1   ;;
-       *.zip)       unzip $1     ;;
-       *.Z)         uncompress $1;;
-       *.7z)        7z x $1      ;;
-       *)           echo "'$1' cannot be extracted via ex()" ;;
-     esac
-   else
-     echo "'$1' is not a valid file"
-   fi
+### Function extract for common file formats ###
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+
+function ex {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: ex <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       ex <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+ else
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "ex: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
 }
+
+IFS=$SAVEIFS
+
 
 cs() {
   if [ "$1" = "" ]; then
