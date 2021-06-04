@@ -370,4 +370,5 @@ config.bind(',sl', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/
 
 # Keybinding for pass
 config.bind('ps', 'debug-log-capacity 1;; spawn --userscript ~/.config/qutebrowser/password_fill')
+
 config.bind('per', 'hint links spawn persepolis --link {hint-url}')
