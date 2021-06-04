@@ -18,6 +18,6 @@ case "$clock" in
 	"12") icon="🕛" ;;
 esac
 
-time=$(date +'%a %R')
-jal_date=$("$HOME"/.local/bin/scripts/aw-date)
-echo "$jal_date" "$time" "$icon"
+#jcal-git is needed
+which jdate >>/dev/null && jal_date=$(jdate +'%m-%d %a %R') || exit 1
+echo "$jal_date" "$icon"

@@ -560,7 +560,7 @@ awful.rules.rules = {
             properties = { floating = true} },
 
     { rule = { class = "mocp" },
-            properties = { tag = " " , opacity = 0.8 }},
+            properties = { tag = " " , opacity = 1 }},
 
     { rule = { instance = "qutebrowser" },
             properties = { tag = " " } },

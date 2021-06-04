@@ -1,5 +1,0 @@
-#!/bin/python
-
-from persiantools.jdatetime import JalaliDate, JalaliDateTime
-
-print(JalaliDate.today().strftime("%m-%d"))

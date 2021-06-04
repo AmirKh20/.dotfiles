@@ -3,8 +3,9 @@ moc-pulse
 zsh-theme-powerlevel10k-git
 dracula-gtk-theme
 lightdm-webkit2-theme-glorious
+libxft-bgra
 autojump
 nerd-fonts-source-code-pro
 nerd-fonts-mononoki
+jcal-git
 fkill
-libxft-bgra
