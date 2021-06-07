@@ -23,12 +23,5 @@ export MANPAGER="nvim -c 'set ft=man' -"
 ## "vim" as manpager
 # export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 
-#export emac.d directory to PATH
-#export PATH="$HOME/.emacs.d/bin:$PATH"
-
 # export .local/bin to PATH
 export PATH="$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/bin/statusbar:$PATH"
-
-#export PATH="$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH"
-
-[ -d ~/inst/bin ] && export PATH="$PATH:$HOME/inst/bin/"
