@@ -129,10 +129,6 @@ source /usr/share/autojump/autojump.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-
-#My   GOOD MORNING/AFTERNOON/NIGHT SHELL STARTUP
-# ~/MyProjects/Scripts/shell-startup/startup.sh
-
 #dt shell-color-script
 #colorscript -r
 
