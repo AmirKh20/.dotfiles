@@ -569,7 +569,7 @@ awful.rules.rules = {
             properties = { tag = " ", maximized = true } },
 
     { rule = { class = "mpv" },
-            properties = { tag = " ", maximized = true } },
+            properties = {  maximized = true } },
     -- Floating clients.
     { rule_any = {
         instance = {
