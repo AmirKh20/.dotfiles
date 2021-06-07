@@ -1,0 +1,11 @@
+#!/bin/bash
+#Watch a Episode randomly
+help(){
+  echo "randomly plays a video and play it with VIDEOPLAYER variable or mpv"
+  echo "Usage: randw [PATH TO THE DIRECTORY]"
+  exit 1
+}
+[ "$1" = "" ] && help
+
+[ "$VIDEOPLAYER" = "" ] && VIDEOPLAYER="mpv"
+find "$1" -type f -name "*.mkv" -or -name "*.mp4" | shuf -n 1 | xargs -I {} "$VIDEOPLAYER" "{}" &> /dev/null
