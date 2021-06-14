@@ -9,3 +9,4 @@ nerd-fonts-source-code-pro
 nerd-fonts-mononoki
 jcal-git
 fkill
+checkupdates-aur

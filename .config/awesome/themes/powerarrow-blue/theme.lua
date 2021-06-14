@@ -387,12 +387,12 @@ pacicon:buttons(
         my_table.join(
         awful.button({ }, 1, function () awful.spawn.with_shell("notify-send \"Please Wait..\" && notify-send -t 7000 \"$(checkupdates && checkupdates-aur)\"") end),
         awful.button({ }, 3, function () awful.spawn.with_shell("st -e bash -c \"checkupdates && read key\"") end),
-        awful.button({ "Mod4" }, 1, function () awful.spawn.with_shell("st -e bash -c \"paru && read key\"") end)
+        awful.button({ "Mod4" }, 1, function () awful.spawn.with_shell("st -e bash -c \"sudo pacman -Syu && paru && read key\"") end)
         ))
-local pacupdates = awful.widget.watch('bash -c "checkupdates | wc -l"', 360, function(widget, stdout) -- every 360 seconds it checks for updates
+local pacupdates = awful.widget.watch('bash -c "checkupdates | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " "))
 end)
-local aurupdates = awful.widget.watch('bash -c "checkupdates-aur | wc -l"', 360, function(widget, stdout) -- every 360 seconds it checks for updates
+local aurupdates = awful.widget.watch('bash -c "checkupdates-aur | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "+" .. stdout .. " "))
 end)
 

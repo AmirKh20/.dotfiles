@@ -20,6 +20,10 @@ pip install -r pip-packages.txt &&
 grep -q "^Color" /etc/pacman.conf || sudo sed -i "s/^#Color$/Color/" /etc/pacman.conf
 grep -q "^VerbosePkgLists" /etc/pacman.conf || sudo sed -i "s/^#VerbosePkgLists$/VerbosePkgLists/" /etc/pacman.conf
 grep -q "ILoveCandy" /etc/pacman.conf || sudo sed -i "/VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+grep -q "^ParallelDownloads" /etc/pacman.conf || sudo sed -i "s/^#ParallelDownloads.*/ParallelDownloads = 3/" /etc/pacman.conf
+
+grep -q "^AurOnly" /etc/paru.conf || sudo sed -i "s/^#AurOnly/AurOnly/" /etc/paru.conf
+grep -q "^BottomUp" /etc/paru.conf || sudo sed -i "s/^#BottomUp/BottomUp/" /etc/paru.conf
 
 [ ! -f /etc/X11/xorg.conf.d/30-touchpad.conf ] && sudo printf 'Section "InputClass"
 	Identifier "touchpad"

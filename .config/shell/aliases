@@ -68,6 +68,7 @@ alias nv="nvim"
 
 alias ss='systemctl status'
 alias se='sudo systemctl enable'
+alias sr='sudo systemctl restart'
 
 alias chup="checkupdates && checkupdates-aur"
 alias trayer="trayer --edge top --align right --height 11 --width 2"
