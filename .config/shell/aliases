@@ -30,6 +30,7 @@ alias wsdc='windscribe disconnect'
 alias grep='grep --color=auto -i'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias rg='rg -S'
 
 [ -f ~/.config/shell/shortcuts ] && source ~/.config/shell/shortcuts
 alias ..='cd ..'

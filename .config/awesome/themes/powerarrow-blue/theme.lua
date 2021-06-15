@@ -58,6 +58,7 @@ theme.layout_magnifier                          = theme.dir .. "/icons/magnifier
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
 theme.widget_pacman                             = theme.dir .. "/icons/pacman.png"
 theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
+theme.widget_loading                            = theme.dir .. "/icons/loading.png"
 theme.widget_battery                            = theme.dir .. "/icons/battery.png"
 theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"
 theme.widget_battery_empty                      = theme.dir .. "/icons/battery_empty.png"
@@ -282,8 +283,8 @@ local bat = lain.widget.bat({
     settings = function()
         if bat_now.status and bat_now.status ~= "N/A" then
             if bat_now.ac_status == 1 then
-                widget:set_markup(markup.fontfg(theme.font, "#FEFEFE"," " .. bat_now.perc .. "% "))
-                baticon:set_image(theme.widget_battery)
+                widget:set_markup(markup.fontfg(theme.font, "#FEFEFE","🔌 " .. bat_now.perc .. "% "))
+                baticon:set_image(nil)
                 return
             elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
                 baticon:set_image(theme.widget_battery_empty)
@@ -295,10 +296,17 @@ local bat = lain.widget.bat({
             widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. bat_now.perc .. "% "))
         else
             widget:set_markup()
-            baticon:set_image(theme.widget_ac)
+            baticon:set_image(theme.widget_loading)
         end
+        widget:buttons(
+        my_table.join(
+        awful.button({ }, 1,function () awful.spawn.with_shell("notify-send Brightness: \"$(xbacklight -get)\"") end),
+        awful.button({ }, 4,function () awful.spawn("xbacklight -inc 10") end),
+        awful.button({ }, 5,function () awful.spawn("xbacklight -dec 10") end)
+        ))
     end
 })
+
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
