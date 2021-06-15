@@ -1,6 +1,6 @@
 #!/bin/sh
 [ "$USER" = "root" ] && echo "Do Not Run this with root!" && exit 1
-[ ! -d ~/.packages ] && exit 1
+[ ! -d ~/.packages ] && echo "~/.packages directory should exist" && exit 1
 
 sudo pacman -S --needed - < packages.txt &&
 
@@ -43,4 +43,4 @@ sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlock
 [ ! -d ~/Pictures ] && mkdir ~/Pictures
 ln -s ~/.config/awesome/themes/powerarrow-blue/starwars.jpg ~/Pictures/bg
 
-chsh -s /bin/zsh
+[ -f /bin/zsh ] && chsh -s /bin/zsh
