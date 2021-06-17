@@ -21,12 +21,6 @@ alias sp='speedtest --no-upload --bytes'
 ##for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-## Windcribe aliases
-alias wss='windscribe status'
-alias wsc='windscribe connect'
-alias wsl='windscribe login'
-alias wsdc='windscribe disconnect'
-
 alias grep='grep --color=auto -i'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
