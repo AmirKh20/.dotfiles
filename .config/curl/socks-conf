@@ -1,1 +1,2 @@
+#This config file should be specified on every command with -c option
 --socks5-hostname localhost:8388
