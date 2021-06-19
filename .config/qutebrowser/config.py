@@ -371,4 +371,10 @@ config.bind(',sl', 'config-cycle content.user_stylesheets ~/.config/qutebrowser/
 # Keybinding for pass
 config.bind('ps', 'debug-log-capacity 1;; spawn --userscript ~/.config/qutebrowser/password_fill')
 
+#Key Binding for persepolis
 config.bind('per', 'hint links spawn persepolis --link {hint-url}')
+
+#Key Binding for shadowsocks proxy (port 8388 in selected for shadowsocks
+config.bind('pr', 'set content.proxy socks://localhost:8388/;; message-info "proxy set to port 8388"')
+#Back to Default
+config.bind('pd', 'set content.proxy system;; message-info "proxy set to system default"')

@@ -354,6 +354,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
+    -- shadowsocks-qt5
+    awful.key({ modkey },            "h",     function () awful.util.spawn("ss-qt5") end,
+        {description = "Launchs shadowsocks-qt5", group = "applications"}),
     -- Browser
     awful.key({ modkey },            "b",     function () awful.util.spawn("qutebrowser") end,
         {description = "Launchs qutebrowser", group = "applications"}),
