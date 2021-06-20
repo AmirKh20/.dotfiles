@@ -7,7 +7,7 @@ if   [ "$1" = "gl" ]; then
 elif [ "$1" = "copy" ] && [ -f "$file" ]; then
        xsel -b < "$file"
 elif [ "$1" = "show" ] && [ -f "$file" ]; then
-      bat --paging=always --style=plain "$file"
+      bat --paging=always --style=header,grid "$file"
 elif [ "$1" = "cly" ]; then
       clyrics -m | tee "$file"
 else
