@@ -55,7 +55,6 @@ let g:startify_bookmarks = [
             \ { 'n': '~/.config/nvim/' },
             \ { 'z': '~/.zshrc' },
             \ { 'v': '~/.vimrc' },
-            \ { 'K': '~/.config/kitty/kitty.conf' },
             \ '~/.config/alacritty/alacritty.yml',
             \ '~/.config',
             \ ]

@@ -118,8 +118,7 @@ awful.layout.layouts = {
 -- Create a launcher widget and a main menu
 myawesomemenu = {
     { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual", terminal.. "st -e man awesome" },
-    { "edit config", editor .. " $HOME/.config/awesome/rc.lua" },
+    { "edit config", editor_cmd .. " " .. os.getenv("HOME") .. "/.config/awesome/rc.lua" },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end },
  }
@@ -366,7 +365,7 @@ globalkeys = gears.table.join(
         {description = "Launchs brave browser", group = "applications"}),
 
     -- Launchs editor with rc.lua
-    awful.key({ modkey, "Control" },  "e",     function () awful.spawn.with_shell("st -e nvim $HOME/.config/awesome/rc.lua") end,
+    awful.key({ modkey, "Control" },  "e",     function () awful.spawn(editor_cmd .. " " .. os.getenv("HOME") .. "/.config/awesome/rc.lua") end,
         {description = "Launchs editor with rc.lua", group = "applications"}),
 
     -- Launchs setwal script
@@ -384,24 +383,47 @@ globalkeys = gears.table.join(
     awful.key({ "Shift" }, "Print", function () awful.util.spawn("flameshot gui") end,
         {description = "flameshot launcher", group = "screenshots"}),
 
-    -- Brightness
-    awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end),
-    awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end),
+    --lockscreen
+    awful.key({ }, "F9", function () awful.util.spawn("xlock") end,
+        {description = "lockscreen", group = "awesome"}),
 
-    -- Alsa volume control
+    -- Brightness
+    awful.key({ }, "XF86MonBrightnessUp",
+    function ()
+      os.execute("xbacklight -inc 10")
+      awful.spawn.with_shell("notify-send -t 400 Brightness: \"$(xbacklight -get)\"")
+    end),
+
+    awful.key({ }, "XF86MonBrightnessDown",
+    function ()
+      os.execute("xbacklight -dec 10")
+      awful.spawn.with_shell("notify-send -t 400 Brightness: \"$(xbacklight -get)\"")
+    end),
+
+    -- Alsa/Pulse volume control
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
-            --os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel))
+            --os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel)) --for alsa
             os.execute("pamixer --allow-boost -i 3")
-            awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)\"")
-            beautiful.volume.update()
+            if screen[1].clients[1].fullscreen then
+                awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)%\"")
+                beautiful.volume.update()
+            else
+                beautiful.volume.update()
+            end
+
         end),
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
-            --os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel))
+            --os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel)) --for alsa
             os.execute("pamixer --allow-boost -d 3")
-            awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)\"")
-            beautiful.volume.update()
+            if screen[1].clients[1].fullscreen then
+                awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)%\"")
+                beautiful.volume.update()
+            else
+                beautiful.volume.update()
+            end
+
         end),
     awful.key({ }, "XF86AudioMute",
         function ()
@@ -410,14 +432,14 @@ globalkeys = gears.table.join(
         end),
 
     -- Launchs Editor
-    awful.key({  modkey, altkey  }, "e",      function () awful.util.spawn("st -e nvim") end,
+    awful.key({  modkey, altkey  }, "e",      function () awful.util.spawn(editor_cmd) end,
         {description = "Launchs Editor", group = "applications"}),
     -- Launchs Music Player
-    awful.key({ modkey, altkey  },  "m",     function () awful.util.spawn("st -c mocp mocp") end,
+    awful.key({ modkey, altkey  },  "m",     function () awful.util.spawn(terminal .. " -c mocp mocp") end,
         {description = "Launchs Moc", group = "applications"}),
 
     -- Launchs vifm
-    awful.key({ modkey, altkey  }, "f", function () awful.spawn.with_shell( terminal.." -e sh $HOME/.config/vifm/scripts/vifmrun" ) end,
+    awful.key({ modkey, altkey  }, "f", function () awful.spawn.with_shell(terminal .. " -e " .. os.getenv("HOME") .. "/.config/vifm/scripts/vifmrun" ) end,
         {description = "Launchs vifm" , group = "applications" }),
 
     -- Launchs pcmanfm

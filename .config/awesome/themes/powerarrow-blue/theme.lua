@@ -106,6 +106,7 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 local markup = lain.util.markup
 local separators = lain.util.separators
 
+terminal = "st"
 
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
@@ -208,8 +209,8 @@ local mem = lain.widget.mem({
 memicon:buttons(
     my_table.join(
     awful.button({ }, 1, function() awful.spawn.with_shell("notify-send \"🧠 Memory hogs\" \"$($HOME/.local/bin/scripts/pinten mem)\"") end),
-    awful.button({ "Mod4" }, 1, function() awful.spawn.with_shell("st -e \"htop\"") end),
-    awful.button({ }, 3, function() awful.spawn.with_shell("st -e \"fkill\"") end)
+    awful.button({ "Mod4" }, 1, function() awful.spawn.with_shell(terminal .. " -e \"htop\"") end),
+    awful.button({ }, 3, function() awful.spawn.with_shell(terminal .. " -e \"fkill\"") end)
 
 ))
 
@@ -224,8 +225,8 @@ local cpu = lain.widget.cpu({
 cpuicon:buttons(
     my_table.join(
     awful.button({ }, 1, function() awful.spawn.with_shell("notify-send \"🖥 CPU hogs\" \"$($HOME/.local/bin/scripts/pinten cpu)\"") end),
-    awful.button({ "Mod4" }, 1, function() awful.spawn.with_shell("st -e \"htop\"") end),
-    awful.button({ }, 3, function() awful.spawn.with_shell("st -e \"fkill\"") end)
+    awful.button({ "Mod4" }, 1, function() awful.spawn.with_shell(terminal .. " -e \"htop\"") end),
+    awful.button({ }, 3, function() awful.spawn.with_shell(terminal .. " -e \"fkill\"") end)
 
 ))
 --[[ Coretemp (lm_sensors, per core)
@@ -348,7 +349,7 @@ theme.volume = lain.widget.pulse({
 })
 volicon:buttons(
         my_table.join(
-        awful.button({ }, 1,function () awful.spawn.with_shell("st -e pulsemixer") end),
+        awful.button({ }, 1,function () awful.spawn.with_shell(terminal .. " -e pulsemixer") end),
         awful.button({ }, 3,function () awful.spawn.with_shell("pamixer -t") end),
         awful.button({ }, 4,function () awful.spawn("pamixer --allow-boost -i 1")
               beautiful.volume.update()
@@ -368,8 +369,8 @@ local net = lain.widget.net({
 })
 neticon:buttons(
     my_table.join(
-    awful.button({ }, 1, function() awful.spawn.with_shell("st -e \"bmon\"") end),
-    awful.button({ }, 3, function() awful.spawn.with_shell("st -e bash -c \"$HOME/.local/bin/speedtest --no-upload --bytes && read key\"") end)
+    awful.button({ }, 1, function() awful.spawn.with_shell(terminal .. " -e \"bmon\"") end),
+    awful.button({ }, 3, function() awful.spawn.with_shell(terminal .. " -e bash -c \"$HOME/.local/bin/speedtest --no-upload --bytes && read key\"") end)
 ))
 
 -- Separators
@@ -403,8 +404,8 @@ local pacicon = wibox.widget.imagebox(theme.widget_pacman)
 pacicon:buttons(
         my_table.join(
         awful.button({ }, 1, function () awful.spawn.with_shell("notify-send \"Please Wait..\" && notify-send -t 7000 \"$(checkupdates && checkupdates-aur)\"") end),
-        awful.button({ }, 3, function () awful.spawn.with_shell("st -e bash -c \"checkupdates && read key\"") end),
-        awful.button({ "Mod4" }, 1, function () awful.spawn.with_shell("st -e bash -c \"sudo pacman -Syu && paru && read key\"") end)
+        awful.button({ }, 3, function () awful.spawn.with_shell(terminal .. " -e bash -c \"checkupdates && read key\"") end),
+        awful.button({ "Mod4" }, 1, function () awful.spawn.with_shell(terminal .. " -e bash -c \"sudo pacman -Syu && paru && read key\"") end)
         ))
 local pacupdates = awful.widget.watch('bash -c "checkupdates | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " "))
@@ -424,7 +425,7 @@ awesomeico:buttons(
 function theme.at_screen_connect(s)
     -- Quake application
    -- s.quake = lain.util.quake({ app = awful.util.terminal })
-   s.quake = lain.util.quake({ app = "st", height = 0.50, argname = "-e %s" })
+   -- s.quake = lain.util.quake({ app = "st", height = 0.50, argname = "-e %s" })
 
     -- If wallpaper is a function, call it with the screen
     local wallpaper = theme.wallpaper
