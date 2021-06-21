@@ -355,7 +355,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- shadowsocks-qt5
-    awful.key({ modkey },            "h",     function () awful.util.spawn("ss-qt5") end,
+    awful.key({ modkey , altkey},            "h",     function () awful.util.spawn("ss-qt5") end,
         {description = "Launchs shadowsocks-qt5", group = "applications"}),
     -- Browser
     awful.key({ modkey },            "b",     function () awful.util.spawn("qutebrowser") end,
@@ -391,12 +391,16 @@ globalkeys = gears.table.join(
     -- Alsa volume control
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
-            os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel))
+            --os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel))
+            os.execute("pamixer --allow-boost -i 3")
+            awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)\"")
             beautiful.volume.update()
         end),
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
-            os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel))
+            --os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel))
+            os.execute("pamixer --allow-boost -d 3")
+            awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)\"")
             beautiful.volume.update()
         end),
     awful.key({ }, "XF86AudioMute",

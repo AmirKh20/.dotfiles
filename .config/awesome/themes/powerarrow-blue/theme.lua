@@ -10,6 +10,7 @@ local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 local naughty = require("naughty")
+local beautiful = require("beautiful")
 
 local math, string, os = math, string, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -157,12 +158,6 @@ theme.mail = lain.widget.imap({
 })
 --]]
 
--- ALSA volume
-theme.volume = lain.widget.alsabar({
-    --togglechannel = "IEC958,3",
-    notification_preset = { font = theme.font, fg = theme.fg_normal },
-})
-
 -- MPD
 --[[
 local musicplr = "st -title Music -g 130x34-320+16 -e ncmpcpp"
@@ -200,6 +195,8 @@ theme.mpd = lain.widget.mpd({
   end
 })
 --]]
+
+
 -- MEM
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
@@ -215,6 +212,7 @@ memicon:buttons(
     awful.button({ }, 3, function() awful.spawn.with_shell("st -e \"fkill\"") end)
 
 ))
+
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
@@ -256,7 +254,7 @@ Copy/paste the city code in the URL to this file in city_id
 --]]
 --local weathericon = wibox.widget.imagebox(theme.widget_weather)
 --theme.weather = lain.widget.weather({
---    city_id = 124665, -- placeholder (mashhad)
+--    city_id = 123456, -- placeholder
 --    notification_preset = { font = "Mononoki Nerd Font 11", fg = theme.fg_normal },
 --    weather_na_markup = markup.fontfg(theme.font, "#ffffff", "N/A "),
 --    settings = function()
@@ -309,47 +307,58 @@ local bat = lain.widget.bat({
 
 
 -- ALSA volume
-local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widget.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            volicon:set_image(theme.widget_vol_mute)
-        elseif tonumber(volume_now.level) == 0 then
-            volicon:set_image(theme.widget_vol_no)
-        elseif tonumber(volume_now.level) <= 50 then
-            volicon:set_image(theme.widget_vol_low)
-        else
-            volicon:set_image(theme.widget_vol)
-        end
-
-        widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
-    end
-})
-
 --local volicon = wibox.widget.imagebox(theme.widget_vol)
---theme.volume = lain.widget.pulse({
+--theme.volume = lain.widget.alsa({
 --    settings = function()
 --        if volume_now.status == "off" then
 --            volicon:set_image(theme.widget_vol_mute)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " Muted "))
 --        elseif tonumber(volume_now.level) == 0 then
 --            volicon:set_image(theme.widget_vol_no)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
 --        elseif tonumber(volume_now.level) <= 50 then
 --            volicon:set_image(theme.widget_vol_low)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
 --        else
 --            volicon:set_image(theme.widget_vol)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
 --        end
---
---        widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
 --    end
 --})
+
+-- PulseAudio
+local volicon = wibox.widget.imagebox(theme.widget_vol)
+theme.volume = lain.widget.pulse({
+    settings = function()
+        if volume_now.muted == "yes" then
+            volicon:set_image(theme.widget_vol_mute)
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " Muted "))
+        elseif tonumber(volume_now.left) == 0 then
+            volicon:set_image(theme.widget_vol_no)
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+        elseif tonumber(volume_now.left) <= 50 then
+            volicon:set_image(theme.widget_vol_low)
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+        else
+            volicon:set_image(theme.widget_vol)
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+        end
+
+    end
+})
 volicon:buttons(
         my_table.join(
         awful.button({ }, 1,function () awful.spawn.with_shell("st -e pulsemixer") end),
         awful.button({ }, 3,function () awful.spawn.with_shell("pamixer -t") end),
-        awful.button({ }, 4,function () awful.spawn("pamixer --allow-boost -i 1") end),
-        awful.button({ }, 5,function () awful.spawn("pamixer --allow-boost -d 1") end)
+        awful.button({ }, 4,function () awful.spawn("pamixer --allow-boost -i 1")
+              beautiful.volume.update()
+        end),
+        awful.button({ }, 5,function () awful.spawn("pamixer --allow-boost -d 1")
+              beautiful.volume.update()
+        end)
 
 ))
+
 -- Net
 local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
@@ -357,12 +366,12 @@ local net = lain.widget.net({
         widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
     end
 })
-
 neticon:buttons(
     my_table.join(
     awful.button({ }, 1, function() awful.spawn.with_shell("st -e \"bmon\"") end),
     awful.button({ }, 3, function() awful.spawn.with_shell("st -e bash -c \"$HOME/.local/bin/speedtest --no-upload --bytes && read key\"") end)
 ))
+
 -- Separators
 local arrow = separators.arrow_left
 
@@ -411,6 +420,7 @@ awesomeico:buttons(
         awful.button({ }, 1, function () mymainmenu:toggle() end)
 
 ))
+
 function theme.at_screen_connect(s)
     -- Quake application
    -- s.quake = lain.util.quake({ app = awful.util.terminal })
