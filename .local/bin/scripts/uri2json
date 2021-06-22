@@ -1,6 +1,6 @@
 #!/bin/bash
 help(){
-  echo "convert shadowsocks URI to .json file"
+  echo -e "convert shadowsocks URI to .json file\n"
   echo -e "Usage: uri2json [Options]\n
     Options:\n
       -u [URI]      The URI of the proxy. it starts with ss://\n
@@ -8,28 +8,10 @@ help(){
       -o [FILE]     output to a json file, FILE should not be ended with .json extension.\n
                     if this option was not specified, the output file name will be the tag in the URI.\n
       -h            This help message"
-  exit $1
+  exit "$1"
 }
-#while [[ $# -gt 0 ]]; do
-#  case $1 in
-#    -o|--output)
-#      tag="$2"
-#      shift
-#      shift
-#      ;;
-#    -q|--qrcode)
-#      uri=$(zbarimg -q --raw "$2")
-#      shift
-#      shift
-#      ;;
-#    *)
-#      uri="$1"
-#      tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
-#      shift
-#      ;;
-#  esac
-#done
-while getopts o:u:q:h opt; do
+
+while getopts o:u:q:h:-: opt; do
   case "$opt" in
     o) tag=${OPTARG};;
     u) uri=${OPTARG}
@@ -39,12 +21,30 @@ while getopts o:u:q:h opt; do
        tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
        ;;
     h) help 0;;
+    -)
+      case "${OPTARG}" in
+        help) help 0;;
+        output) tag=${!OPTIND}
+                shift $((OPTIND - 1))
+                ;;
+        uri)    uri=${!OPTIND}
+                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+                shift $((OPTIND - 1))
+                ;;
+        qrcode) uri=$(zbarimg -q --raw "${!OPTIND}")
+                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+                shift $((OPTIND - 1))
+                ;;
+        *)      echo "Wrong Option"; help 1;;
+      esac
+      ;;
+    *)      echo "Wrong Option"; help 1;;
   esac
 done
 
-if [ "$uri" != "" ] && [[ "$uri" != ss://* ]]; then
+if [ -n "$uri" ] && [[ "$uri" != ss://* ]]; then
   echo "Wrong URI" && help 1
-elif [ "$uri" = "" ]; then
+elif [ -z "$uri" ]; then
   help 1
 fi
 
@@ -66,8 +66,8 @@ fi
 server=$(echo -n "$server_and_s_port" | cut -d':' -f1)
 s_port=$(echo -n "$server_and_s_port" | cut -d':' -f2)
 
-[ "$server" != "" ] && [ "$s_port" != "" ] && [ "$pass" != "" ] && [ "$method" != "" ] &&
-cat << END >> $tag.json &&
+[ -n "$server" ] && [ -n "$s_port" ] && [ -n "$pass" ] && [ -n "$method" ] &&
+cat << END >> "$tag.json" &&
 {
     "server": "$server",
     "server_port": "$s_port",
