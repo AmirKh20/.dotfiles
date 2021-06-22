@@ -1,0 +1,55 @@
+#!/bin/bash
+help(){
+  echo "convert shadowsocks URI to .json file"
+  echo "Usage: uri2json [URI] [-o] [JSON_FILE_NAME_WITHOUT_EXTENSION]"
+  echo "if -o option with the jsons file name was not specified, the tag in the URI will be the name of the json file"
+  exit $1
+}
+[ "$1" = "--help" ] || [ "$1" = "-h" ] && help 0
+if [ "$1" = "" ] || [[ "$1" != ss://*  ]]
+then
+  echo -e "\033[0;31m specify the URI or $1 in not an shadowsocks URI!\033[0m"
+  help 1
+elif [ "$2" != "" ] && [ "$2" != "-o" ]
+then
+  echo -e "\033[0;31m $2 in not an option!\033[0m"
+  help 1
+elif [ "$2" = "-o" ] && [ "$3" = "" ] || [[ "$3" = *.json ]]
+then
+  echo -e "\033[0;31m specify the name of the file.json without .json!\033[0m"
+  help 1
+fi
+
+uri="$1"
+if echo "$uri" | grep -q "@"
+then
+  method_and_pass=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f1 | base64 --decode 2>/dev/null)
+  method=$(echo -n "$method_and_pass" | cut -d':' -f1)
+  pass=$(echo -n "$method_and_pass" | cut -d':' -f2)
+  server_and_s_port=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f1)
+else
+  method_pass_server_s_port=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'#' -f1 | base64 --decode 2>/dev/null)
+  method=$(echo -n "$method_pass_server_s_port" | cut -d':' -f1)
+  pass=$(echo -n "$method_pass_server_s_port" | cut -d'@' -f 1 | cut -d':' -f2)
+  server_and_s_port=$(echo -n "$method_pass_server_s_port" | cut -d'@' -f2)
+fi
+
+server=$(echo -n "$server_and_s_port" | cut -d':' -f1)
+s_port=$(echo -n "$server_and_s_port" | cut -d':' -f2)
+
+[ "$2" = "" ] && tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+[ "$2" = "-o" ] && tag=$3
+
+cat << END >> $tag.json
+{
+    "server": "$server",
+    "server_port": "$s_port",
+    "local_address": "127.0.0.1",
+    "local_port": "8388",
+    "password": "$pass",
+    "timeout": "600",
+    "method": "$method",
+    "fast_open": false
+}
+END
+echo "$tag.json is now in the working directory"
