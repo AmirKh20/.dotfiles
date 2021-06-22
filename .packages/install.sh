@@ -44,3 +44,5 @@ sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlock
 ln -s ~/.config/awesome/themes/powerarrow-blue/starwars.jpg ~/Pictures/bg
 
 [ -f /bin/zsh ] && chsh -s /bin/zsh
+
+systemctl --user enable pulseaudio.service

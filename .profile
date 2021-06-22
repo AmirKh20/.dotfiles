@@ -25,4 +25,3 @@ export MANPAGER="nvim -c 'set ft=man' -"
 
 # export .local/bin to PATH
 export PATH="$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/bin/statusbar:$PATH"
-pulseaudio --start
