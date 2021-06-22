@@ -1,12 +1,14 @@
 #!/bin/bash
 help(){
   echo -e "convert shadowsocks URI to .json file\n"
-  echo -e "Usage: uri2json [Options]\n
-    Options:\n
-      -u [URI]      The URI of the proxy. it starts with ss://\n
-      -q [QR code]  The QR code to the URI\n
-      -o [FILE]     output to a json file, FILE should not be ended with .json extension.\n
-                    if this option was not specified, the output file name will be the tag in the URI.\n
+  echo "Usage:
+      uri2json [Options]
+Options:
+
+      -u [URI]      The URI of the proxy. it starts with ss://
+      -q [QR code]  The QR code to the URI
+      -o [FILE]     output to a json file, FILE should not be ended with .json extension.
+                    if this option was not specified, the output file name will be the tag in the URI.
       -h            This help message"
   exit "$1"
 }
@@ -15,10 +17,10 @@ while getopts o:u:q:h:-: opt; do
   case "$opt" in
     o) tag=${OPTARG};;
     u) uri=${OPTARG}
-       tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+       tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
       ;;
     q) uri=$(zbarimg -q --raw "${OPTARG}")
-       tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+       tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
        ;;
     h) help 0;;
     -)
@@ -28,11 +30,11 @@ while getopts o:u:q:h:-: opt; do
                 shift $((OPTIND - 1))
                 ;;
         uri)    uri=${!OPTIND}
-                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
                 shift $((OPTIND - 1))
                 ;;
         qrcode) uri=$(zbarimg -q --raw "${!OPTIND}")
-                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f2)
+                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
                 shift $((OPTIND - 1))
                 ;;
         *)      echo "Wrong Option"; help 1;;
@@ -50,6 +52,9 @@ fi
 
 if [[ "$tag" = *.json ]]; then
   echo "Do not specify the file extension. instead of example.json, enter example" && help 1
+elif [ -z "$tag" ]; then
+  echo -e "You Need to give a file name with -o option, without the .json extension\n"
+  help 1
 fi
 
 if echo "$uri" | grep -q "@"; then
