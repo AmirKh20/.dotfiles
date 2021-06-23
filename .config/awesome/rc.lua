@@ -405,26 +405,22 @@ globalkeys = gears.table.join(
         function ()
             --os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel)) --for alsa
             os.execute("pamixer --allow-boost -i 3")
-            if screen[1].clients[1].fullscreen then
+            if #awful.screen.focused().clients > 0 and screen[1].clients[1].fullscreen then
                 awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)%\"")
-                beautiful.volume.update()
-            else
-                beautiful.volume.update()
             end
-
+                beautiful.volume.update()
         end),
+
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
             --os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel)) --for alsa
             os.execute("pamixer --allow-boost -d 3")
-            if screen[1].clients[1].fullscreen then
+            if #awful.screen.focused().clients > 0 and screen[1].clients[1].fullscreen then
                 awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)%\"")
-                beautiful.volume.update()
-            else
-                beautiful.volume.update()
             end
-
+                beautiful.volume.update()
         end),
+
     awful.key({ }, "XF86AudioMute",
         function ()
             os.execute(string.format("pamixer -t", beautiful.volume.togglechannel or beautiful.volume.channel))
