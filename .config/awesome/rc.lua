@@ -84,6 +84,8 @@ beautiful.init(gears.filesystem.get_themes_dir() .. string.format("%s/theme.lua"
 terminal = "st"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. "nvim"
+BROWSER1 = "qutebrowser"
+BROWSER2 = "librewolf"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -357,16 +359,16 @@ globalkeys = gears.table.join(
     awful.key({ modkey , altkey},            "h",     function () awful.util.spawn("ss-qt5") end,
         {description = "Launchs shadowsocks-qt5", group = "applications"}),
     -- Browser
-    awful.key({ modkey },            "b",     function () awful.util.spawn("qutebrowser") end,
-        {description = "Launchs qutebrowser", group = "applications"}),
+    awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1) end,
+        {description = "Launchs " .. BROWSER1 , group = "applications"}),
 
     -- Browser
-    awful.key({ modkey, altkey },    "b",     function () awful.util.spawn("brave") end,
-        {description = "Launchs brave browser", group = "applications"}),
+    awful.key({ modkey, altkey },    "b",     function () awful.util.spawn(BROWSER2) end,
+        {description = "Launchs " .. BROWSER2 , group = "applications"}),
 
     -- Launchs editor with rc.lua
     awful.key({ modkey, "Control" },  "e",     function () awful.spawn(editor_cmd .. " " .. os.getenv("HOME") .. "/.config/awesome/rc.lua") end,
-        {description = "Launchs editor with rc.lua", group = "applications"}),
+        {description = "Launchs " .. editor .. " with rc.lua", group = "applications"}),
 
     -- Launchs setwal script
     awful.key({ modkey, altkey },  "s",     function () awful.spawn.with_shell("$HOME/.local/bin/scripts/setwal") end,
