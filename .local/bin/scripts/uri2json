@@ -5,54 +5,83 @@ help(){
       uri2json [Options]
 Options:
 
-      -u [URI]      The URI of the proxy. it starts with ss://
-      -q [QR code]  The QR code to the URI
-      -o [FILE]     output to a json file, FILE should not be ended with .json extension.
-                    if this option was not specified, the output file name will be the tag in the URI.
-      -h            This help message"
+      -u|--uri [URI]         The URI of the proxy. it starts with ss://
+      -q|--qrcode [QR code]  The QR code to the URI
+      -o|--output <FILE_NAME>     output to a json file, FILE_NAME should not be ended with .json extension. This can be also a path.
+                    if this option was not specified, the output file name will be the tag in the URI. The tag in the URI starts with a # symbol.
+      -i|--input  <path/to/file>    URIs listed line by line in a text file. Dont use this option with -o option, instead edit the tags in the input file.
+      -h|--help                     Shows this help message"
   exit "$1"
 }
 
-while getopts o:u:q:h:-: opt; do
+while getopts o:u:q:i:h:-: opt; do
   case "$opt" in
-    o) tag=${OPTARG};;
+    o) output_file=${OPTARG}
+      ;;
     u) uri=${OPTARG}
-       tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
+       output_file=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
       ;;
     q) uri=$(zbarimg -q --raw "${OPTARG}")
-       tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
+       output_file=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
        ;;
+    i)
+       if [ -r "${OPTARG}" ]; then
+         input_file=${OPTARG}
+       else
+         echo -e "file does not exist or not readable" && help 1
+       fi
+
+       while read -r LINE; do
+         uri2json -u "${LINE}"
+       done < "${input_file}"
+       exit 0
+       ;;
+
     h) help 0;;
     -)
       case "${OPTARG}" in
         help) help 0;;
-        output) tag=${!OPTIND}
+        output) output_file=${!OPTIND}
                 shift $((OPTIND - 1))
                 ;;
         uri)    uri=${!OPTIND}
-                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
+                output_file=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
                 shift $((OPTIND - 1))
                 ;;
         qrcode) uri=$(zbarimg -q --raw "${!OPTIND}")
-                tag=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
+                output_file=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | awk -F'#' '{print $2}')
                 shift $((OPTIND - 1))
                 ;;
+        input)
+                if [ -r "${!OPTIND}" ]; then
+                  input_file=${!OPTIND}
+                else
+                  echo -e "file does not exist or not readable" && help 1
+                fi
+
+                while read -r LINE; do
+                  uri2json -u "${LINE}"
+                done < "${input_file}"
+                exit 0
+                shift $((OPTIND - 1))
+                ;;
+
         *)      echo "Wrong Option"; help 1;;
       esac
       ;;
-    *)      echo "Wrong Option"; help 1;;
   esac
 done
 
 if [ -n "$uri" ] && [[ "$uri" != ss://* ]]; then
   echo "Wrong URI" && help 1
 elif [ -z "$uri" ]; then
+  echo -e "specify the URI\n"
   help 1
 fi
 
-if [[ "$tag" = *.json ]]; then
-  echo "Do not specify the file extension. instead of example.json, enter example" && help 1
-elif [ -z "$tag" ]; then
+if [[ "$output_file" = *.json ]]; then
+  echo "Do not specify the output file extension. instead of example.json, enter example" && help 1
+elif [ -z "$output_file" ]; then
   echo -e "You Need to give a file name with -o option, without the .json extension\n"
   help 1
 fi
@@ -72,7 +101,7 @@ server=$(echo -n "$server_and_s_port" | cut -d':' -f1)
 s_port=$(echo -n "$server_and_s_port" | cut -d':' -f2)
 
 [ -n "$server" ] && [ -n "$s_port" ] && [ -n "$pass" ] && [ -n "$method" ] &&
-cat << END >> "$tag.json" &&
+cat << END >> "$output_file.json" &&
 {
     "server": "$server",
     "server_port": "$s_port",
@@ -84,4 +113,4 @@ cat << END >> "$tag.json" &&
     "fast_open": false
 }
 END
-echo "$tag.json is now in the working directory"
+echo "$output_file.json is now in the working directory"
