@@ -7,7 +7,7 @@ nm-applet &
 #Faster key pressing
 xset r rate 300 35
 
-#change language layout with alt-shift
+#change language layout with alt-shift and set capslock as escape key
 setxkbmap -option caps:escape,grp:alt_shift_toggle -layout us,ir
 
 #set the last wallpaper
