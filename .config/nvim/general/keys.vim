@@ -9,14 +9,14 @@ nnoremap <M-h>    :vertical resize -2<CR>
 nnoremap <M-l>    :vertical resize +2<CR>
 
 " Remap ESC to kj and jk
-inoremap jk <Esc>
-inoremap kj <Esc>
+"inoremap jk <Esc>
+"inoremap kj <Esc>
 
 " Easy CAPS
 inoremap <c-u> <ESC>viwUi
 nnoremap <c-u> viwU<Esc>
 
-" TAB in general mode will move to next buffer
+" TAB in normal mode will move to next buffer
 nnoremap <TAB> :bnext<CR>
 " SHIFT-TAB will go back
 nnoremap <S-TAB> :bNext<CR>
@@ -28,7 +28,7 @@ nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>ss :SSave<CR>
 nnoremap <Leader>sl :SLoad<CR>
 
-" Alt TAB in general mode will move to next tab
+" Alt TAB in normal mode will move to next tab
 nnoremap <M-TAB> :tabnext<CR>
 " Alt Shitf Tab will go back
 " nnoremap <M-S-TAB> :tabNext<CR>
