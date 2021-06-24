@@ -119,3 +119,8 @@ autocmd BufRead ~/.xinitrc,~/.xprofile set filetype=sh
 
 let g:python_highlight_all = 1
 set termguicolors
+
+" Octave syntax
+augroup filetypedetect
+  au! BufRead,BufNewFile *.m,*.oct set filetype=octave
+augroup END

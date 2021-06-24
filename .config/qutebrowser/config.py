@@ -378,3 +378,5 @@ config.bind('per', 'hint links spawn persepolis --link {hint-url}')
 config.bind('pr', 'set content.proxy socks://localhost:8388/;; message-info "proxy set to port 8388"')
 #Back to Default
 config.bind('pd', 'set content.proxy system;; message-info "proxy set to system default"')
+
+config.bind('sb', 'hint links spawn --userscript ~/.config/qutebrowser/subtitle {hint-url}')

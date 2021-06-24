@@ -39,7 +39,3 @@ call vundle#begin()
 call vundle#end()            " required
 source ~/.config/nvim/plugins_conf.d/pconfig.vim
 
-" Octave syntax
-augroup filetypedetect
-  au! BufRead,BufNewFile *.m,*.oct set filetype=octave
-augroup END
