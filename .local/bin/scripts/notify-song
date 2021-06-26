@@ -1,5 +1,5 @@
 #!/bin/sh
-file="$3" #this variable should be set from /
+file="$3"
 filepath=$(dirname "${file}")
 [ -n "$file" ] && [ -n "$filepath" ] && [ ! -f "${filepath}cover.jpg" ] &&
 if mediainfo "$file" | grep -q -i cover; then
