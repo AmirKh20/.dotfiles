@@ -1,6 +1,7 @@
 #!/bin/sh
+#this script mainly created for mocp and is specified in the ~/.moc/config
 file="$3"
-filepath=$(dirname "${file}")
+filepath=$(dirname "${file}") #for some reason this variable should be set with absolute path
 [ -n "$file" ] && [ -n "$filepath" ] && [ ! -f "${filepath}cover.jpg" ] &&
 if mediainfo "$file" | grep -q -i cover; then
    ffmpeg -i "$file" "${filepath}cover.jpg"
