@@ -1,0 +1,11 @@
+#!/bin/sh
+
+state=$(mocp -Q %state)
+
+if [ -n "$state" ] && [ "$state" = "PLAY" ]; then
+  mocp -P
+elif [ "$state" = "PAUSE" ]; then
+  mocp -U
+else
+  notify-send "mocp is not running or is stoped"
+fi

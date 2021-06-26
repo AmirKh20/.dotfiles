@@ -1,0 +1,12 @@
+#!/bin/sh
+file="$3" #this variable should be set from /
+filepath=$(dirname "${file}")
+[ -n "$file" ] && [ -n "$filepath" ] && [ ! -f "${filepath}cover.jpg" ] &&
+if mediainfo "$file" | grep -q -i cover; then
+   ffmpeg -i "$file" "${filepath}cover.jpg"
+else
+  glyrc cover -a "$2" -b "$4" -w "${filepath}cover.jpg"
+fi
+
+notify-send -i "${filepath}cover.jpg" "Title: $1
+Artist: $2"

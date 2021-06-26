@@ -1,0 +1,7 @@
+#!/bin/sh
+#changing the default programs.
+#example: ch-df /path/to/file.png sxiv
+
+filetype=$(xdg-mime query filetype "$1")
+xdg-mime default "$2.desktop" "$filetype"
+xdg-open "$1"
