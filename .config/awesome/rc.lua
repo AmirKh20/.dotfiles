@@ -250,7 +250,13 @@ root.buttons(my_table.join(
  end)
   ---- }}}
 ]]
-
+function tag_focus(i)
+      local screen = awful.screen.focused()
+      local tag = screen.tags[i]
+      if tag then
+         tag:view_only()
+      end
+end
 -- {{{ Key bindings
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -372,7 +378,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey , altkey},            "h",     function () awful.util.spawn("ss-qt5") end,
         {description = "Launchs shadowsocks-qt5", group = "applications"}),
     -- Browser
-    awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1) end,
+    awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1) tag_focus (1) end,
         {description = "Launchs " .. BROWSER1 , group = "applications"}),
 
     -- Browser
@@ -442,12 +448,22 @@ globalkeys = gears.table.join(
             beautiful.volume.update()
         end),
 
+    -- Audio Media Buttons for mocp
+    awful.key({ }, "XF86AudioPlay", function () awful.spawn.with_shell(os.getenv("HOME") .. "/.local/bin/scripts/mocmedia") end,
+        {description = "Play/Pause Music", group = "media buttons"}),
+    awful.key({ }, "XF86AudioStop", function () awful.spawn.with_shell("mocp -s") end,
+        {description = "Stop Music", group = "media buttons"}),
+    awful.key({ }, "XF86AudioPrev", function () awful.spawn.with_shell("mocp -r") end,
+        {description = "Previous Music", group = "media buttons"}),
+    awful.key({ }, "XF86AudioNext", function () awful.spawn.with_shell("mocp -f") end,
+        {description = "Next Music", group = "media buttons"}),
+
     -- Launchs Editor
     awful.key({  modkey, altkey  }, "e",      function () awful.util.spawn(editor_cmd) end,
         {description = "Launchs Editor", group = "applications"}),
     -- Launchs Music Player
-    awful.key({ modkey, altkey  },  "m",     function () awful.util.spawn(terminal .. " -c mocp mocp") end,
-        {description = "Launchs Moc", group = "applications"}),
+    awful.key({ modkey, altkey  },  "m",     function () awful.util.spawn(terminal .. " -c mocp mocp") tag_focus (4) end,
+        {description = "Launchs Mocp", group = "applications"}),
 
     -- Launchs vifm
     awful.key({ modkey, altkey  }, "f", function () awful.spawn.with_shell(terminal .. " -e " .. os.getenv("HOME") .. "/.config/vifm/scripts/vifmrun" ) end,
@@ -458,7 +474,7 @@ globalkeys = gears.table.join(
         {description = "Launchs pcmanfm" , group = "applications" }),
 
     -- Launchs Telegram
-    awful.key({ modkey, altkey },  "t",     function () awful.util.spawn("telegram-desktop") end,
+    awful.key({ modkey, altkey },  "t",     function () awful.util.spawn("telegram-desktop") tag_focus (6) end,
         {description = "Launchs telegram", group = "applications"})
 
 )
@@ -601,7 +617,7 @@ awful.rules.rules = {
             properties = { floating = true} },
 
     { rule = { class = "mocp" },
-            properties = { tag = " " , opacity = 1 }},
+            properties = { tag = " " }},
 
     { rule = { instance = "qutebrowser" },
             properties = { tag = " " } },

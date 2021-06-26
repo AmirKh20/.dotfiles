@@ -669,7 +669,7 @@ ExecCommand7 = "/home/amir/.local/bin/scripts/mocpwd %f"
 #
 # Example:    OnSongChange = "/home/jack/.moc/myscript %a %r"
 #
-#OnSongChange = "notify-send -t 1000 %f"
+OnSongChange = "/home/amir/.local/bin/scripts/notify-song %t %a %f %r"
 
 # If RepeatSongChange is 'yes' then MOC will execute the command every time
 # a song starts playing regardless of whether or not it is just repeating.

@@ -64,7 +64,7 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 " Auto compile config.h
-autocmd BufWritePost config.h !st -e bash -c 'sudo make install && read key'
+"autocmd BufWritePost config.h !st -e bash -c 'sudo make install && read key'
 
 " Auto Syntax Highlighting for ~/.xinitrc and ~/.xprofile
 autocmd BufRead ~/.xinitrc,~/.xprofile set filetype=sh

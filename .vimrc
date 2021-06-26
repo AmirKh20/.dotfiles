@@ -38,4 +38,3 @@ call vundle#begin()
 
 call vundle#end()            " required
 source ~/.config/nvim/plugins_conf.d/pconfig.vim
-

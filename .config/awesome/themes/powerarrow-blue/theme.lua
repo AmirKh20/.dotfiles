@@ -403,14 +403,19 @@ end
 local pacicon = wibox.widget.imagebox(theme.widget_pacman)
 pacicon:buttons(
         my_table.join(
-        awful.button({ }, 1, function () awful.spawn.with_shell("notify-send \"Please Wait..\" && notify-send -t 7000 \"$(checkupdates && checkupdates-aur)\"") end),
+        awful.button({ }, 1, function () awful.spawn.with_shell("notify-send \"Please Wait..\" && notify-send -t 7000 \"$(checkupdates && checkupdates-aur)\"")
+--        awful.spawn.easy_async('bash -c "checkupdates | wc -l"', function(stdout, stderr, reason, exit_code)
+--          pacupdates = widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " ")) end)
+--        awful.spawn.easy_async('bash -c "checkupdates-aur | wc -l"', function(stdout, stderr, reason, exit_code)
+--          stdout = widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " ")) end)
+        end),
         awful.button({ }, 3, function () awful.spawn.with_shell(terminal .. " -e bash -c \"checkupdates && read key\"") end),
         awful.button({ "Mod4" }, 1, function () awful.spawn.with_shell(terminal .. " -e bash -c \"sudo pacman -Syu && paru && read key\"") end)
         ))
-local pacupdates = awful.widget.watch('bash -c "checkupdates | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
+pacupdates = awful.widget.watch('bash -c "checkupdates | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " "))
 end)
-local aurupdates = awful.widget.watch('bash -c "checkupdates-aur | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
+aurupdates = awful.widget.watch('bash -c "checkupdates-aur | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "+" .. stdout .. " "))
 end)
 
