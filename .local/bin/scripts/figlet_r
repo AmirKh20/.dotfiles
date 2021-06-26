@@ -1,3 +1,4 @@
 #!/bin/sh
 
-/bin/ls "$HOME"/.fonts/figletfonts | shuf -n 1 | xargs -I % bash -c "{ figlet -cktf % "$1" && echo %;}"
+font="$(cd /usr/share/figlet/fonts/ && /bin/ls *.flf /usr/share/figlet/fonts | shuf -n 1)"
+figlet -cktf "$font" "$1" && echo "Font is $font"
