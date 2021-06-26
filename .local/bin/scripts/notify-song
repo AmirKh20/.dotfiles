@@ -2,12 +2,12 @@
 #this script mainly created for mocp and is specified in the ~/.moc/config
 file="$3"
 filepath=$(dirname "${file}") #for some reason this variable should be set with absolute path
-[ -n "$file" ] && [ -n "$filepath" ] && [ ! -f "${filepath}cover.jpg" ] &&
+[ -n "$file" ] && [ -n "$filepath" ] && [ ! -f "${filepath}/cover.jpg" ] &&
 if mediainfo "$file" | grep -q -i cover; then
-   ffmpeg -i "$file" "${filepath}cover.jpg"
+   ffmpeg -i "$file" "${filepath}/cover.jpg"
 else
-  glyrc cover -a "$2" -b "$4" -w "${filepath}cover.jpg"
+  glyrc cover -a "$2" -b "$4" -w "${filepath}/cover.jpg"
 fi
 
-notify-send -i "${filepath}cover.jpg" "Title: $1
+notify-send -i "${filepath}/cover.jpg" "Title: $1
 Artist: $2"
