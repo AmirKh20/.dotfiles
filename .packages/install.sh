@@ -46,3 +46,6 @@ ln -s ~/.config/awesome/themes/powerarrow-blue/starwars.jpg ~/Pictures/bg
 [ -f /bin/zsh ] && chsh -s /bin/zsh
 
 systemctl --user enable pulseaudio.service
+
+echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf >>/dev/null
+echo "blacklist uvcvideo" | sudo tee /etc/modprobe.d/nowebcam.conf >>/dev/null
