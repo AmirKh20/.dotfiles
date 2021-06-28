@@ -16,7 +16,7 @@ Options:
   exit "$1"
 }
 
-while getopts o:u:q:i:h:-: opt; do
+while getopts o:u:q:i:h-: opt; do
   case "$opt" in
     o) output_file=${OPTARG}
       ;;
@@ -71,6 +71,9 @@ while getopts o:u:q:i:h:-: opt; do
         *)      echo "Wrong Option"; help 1;;
       esac
       ;;
+      :) echo "Option -${OPTARG} requires an argument." >&2
+         exit 1
+         ;;
   esac
 done
 
