@@ -7,4 +7,4 @@ curl "$URL" -o "/tmp/film-zip.zip" --socks5-hostname localhost:8388 &&
 #filename=$(pgrep -a "mpv" | awk '{print $NF}')
 #
 #mv "$(head -n 1 /tmp/path_file)/$(zipinfo -1 /tmp/film-zip.zip | head -n 1)" "${filename%.*}.srt"
-rm /tmp/film-zip.zip /tmp/path_file
+rm /tmp/film-zip.zip
