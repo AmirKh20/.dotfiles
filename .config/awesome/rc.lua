@@ -449,7 +449,7 @@ globalkeys = gears.table.join(
         end),
 
     -- Audio Media Buttons for mocp
-    awful.key({ }, "XF86AudioPlay", function () awful.spawn.with_shell(os.getenv("HOME") .. "/.local/bin/scripts/mocmedia") end,
+    awful.key({ }, "XF86AudioPlay", function () awful.spawn.with_shell(os.getenv("HOME") .. "/.moc/scripts/mocmedia") end,
         {description = "Play/Pause Music", group = "media buttons"}),
     awful.key({ }, "XF86AudioStop", function () awful.spawn.with_shell("mocp -s") end,
         {description = "Stop Music", group = "media buttons"}),
