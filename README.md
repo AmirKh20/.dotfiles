@@ -14,5 +14,8 @@ every line that starts with an awful.button is defining the clicks on the icons 
 
 for example for volume icon:
 
-            awful.button({ }, 1,function () awful.spawn.with_shell("st -e pulsemixer") end),
-1 means left click, and if you click on the volume icon it will open st with pulsemixer.
+`
+      awful.button({ }, 1,function () awful.spawn.with_shell(terminal .. " -e pulsemixer") end),
+`
+
+1 means left click, and if you click on the volume icon it will open terminal(st) with pulsemixer.
