@@ -5,7 +5,7 @@ help(){
   echo "Usage: randw [PATH TO THE DIRECTORY]"
   exit 1
 }
-[ "$1" = "" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ] && help
+[ -z "$1" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ] && help
 
-[ "$VIDEOPLAYER" = "" ] && VIDEOPLAYER="mpv"
+[ -z "$VIDEOPLAYER" ] && VIDEOPLAYER="mpv"
 find "$1" -type f -name "*.mkv" -or -name "*.mp4" | shuf -n 1 | xargs -I {} "$VIDEOPLAYER" "{}" &> /dev/null
