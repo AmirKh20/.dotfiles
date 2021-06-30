@@ -8,6 +8,7 @@ these are two screenshots of my awesomeWM config.
 ![screenshot1](.config/awesome/screenshot.png)
 ![screenshot2](.config/awesome/screenshot2.png)
 The terminal in the screenshot is [luke's build of st](https://github.com/LukeSmithxyz/st)
+with minor changes to config.h
 
 And The status bar is clickable, you can see them in the [theme.lua](.config/awesome/themes/powerarrow-blue/theme.lua) for powerarrow-blue theme.
 every line that starts with an awful.button is defining the clicks on the icons in the status bar.
