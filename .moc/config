@@ -524,13 +524,13 @@ Layout2 = directory(0,0,50%,100%):playlist(50%,0,FILL,100%)
 # Examples:   ExecCommand1 = "cp %f /mnt/usb_drive"
 #             ExecCommand2 = "/home/joe/now_playing %I"
 #
-ExecCommand1 = "/home/amir/.local/bin/scripts/moclyrics gl %T %R %F"
-ExecCommand2 = "/home/amir/.local/bin/scripts/moclyrics gl %t %r %f"
-ExecCommand3 = "/home/amir/.local/bin/scripts/moclyrics show - - %f"
-ExecCommand4 = "/home/amir/.local/bin/scripts/moclyrics copy - - %F"
-ExecCommand5 = "/home/amir/.local/bin/scripts/moclyrics copy - - %f"
-ExecCommand6 = "/home/amir/.local/bin/scripts/moclyrics cly - - %F"
-ExecCommand7 = "/home/amir/.local/bin/scripts/mocpwd %f"
+ExecCommand1 = "/home/amir/.moc/scripts/moclyrics gl %T %R %F"
+ExecCommand2 = "/home/amir/.moc/scripts/moclyrics gl %t %r %f"
+ExecCommand3 = "/home/amir/.moc/scripts/moclyrics show - - %f"
+ExecCommand4 = "/home/amir/.moc/scripts/moclyrics copy - - %F"
+ExecCommand5 = "/home/amir/.moc/scripts/moclyrics copy - - %f"
+ExecCommand6 = "/home/amir/.moc/scripts/moclyrics cly - - %F"
+ExecCommand7 = "/home/amir/.moc/scripts/mocpwd %f"
 #ExecCommand8 =
 #ExecCommand9 =
 #ExecCommand10 =
@@ -669,7 +669,7 @@ ExecCommand7 = "/home/amir/.local/bin/scripts/mocpwd %f"
 #
 # Example:    OnSongChange = "/home/jack/.moc/myscript %a %r"
 #
-OnSongChange = "/home/amir/.local/bin/scripts/notify-song %t %a %f %r"
+OnSongChange = "/home/amir/.moc/scripts/notify-song %t %a %f %r"
 
 # If RepeatSongChange is 'yes' then MOC will execute the command every time
 # a song starts playing regardless of whether or not it is just repeating.

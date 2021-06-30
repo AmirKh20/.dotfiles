@@ -61,7 +61,7 @@ alias espeak='espeak -s 120'
 
 alias nv="nvim"
 
-alias ss='systemctl status'
+alias sstat='systemctl status'
 alias se='sudo systemctl enable'
 alias sd='sudo systemctl disable'
 alias sr='sudo systemctl restart'
