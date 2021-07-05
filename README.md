@@ -5,7 +5,7 @@ also other references: [lain](https://github.com/lcpz/lain) , [awesome-freedeskt
 
 # Awesome Wm
 
-these are two screenshot of my awesomeWM config.
+these are two screenshots of my awesomeWM config.
 ![screenshot1](.config/awesome/screenshot.png)
 ![screenshot2](.config/awesome/screenshot2.png)
 The terminal in the screenshots is [luke's build of st](https://github.com/LukeSmithxyz/st)
