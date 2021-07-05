@@ -94,12 +94,12 @@ fi
 if echo "$uri" | grep -q "@"; then
   method_and_pass=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f1 | base64 --decode 2>/dev/null)
   method=$(echo -n "$method_and_pass" | cut -d':' -f1)
-  pass=$(echo -n "$method_and_pass" | cut -d':' -f2)
+  pass=$(echo -n "$method_and_pass" | cut -d':' -f2-)
   server_and_s_port=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'@' -f2 | cut -d'#' -f1)
 else
   method_pass_server_s_port=$(echo -n "$uri" | cut -d'/' -f3 | cut -d'#' -f1 | base64 --decode 2>/dev/null)
   method=$(echo -n "$method_pass_server_s_port" | cut -d':' -f1)
-  pass=$(echo -n "$method_pass_server_s_port" | cut -d'@' -f 1 | cut -d':' -f2)
+  pass=$(echo -n "$method_pass_server_s_port" | cut -d'@' -f1 | cut -d':' -f2-)
   server_and_s_port=$(echo -n "$method_pass_server_s_port" | cut -d'@' -f2)
 fi
 server=$(echo -n "$server_and_s_port" | cut -d':' -f1)
