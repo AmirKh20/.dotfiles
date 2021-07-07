@@ -42,4 +42,4 @@ lxappearance
 htop
 pacman-contrib
 python-adblock
-shadowsocks-qt5
+moc
