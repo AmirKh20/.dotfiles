@@ -4,4 +4,4 @@ function get_working_directory()
     os.execute("echo '" .. path .. "' > " .. "/tmp/path_file")
     mp.osd_message("path copied into /tmp/path_file", 10)
 end
-mp.add_key_binding('ctrl+s', 'get_working_directory', get_working_directory)
+mp.add_key_binding('ctrl+p', 'get_working_directory', get_working_directory)
