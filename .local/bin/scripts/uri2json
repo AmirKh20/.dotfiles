@@ -109,11 +109,11 @@ s_port=$(echo -n "$server_and_s_port" | cut -d':' -f2)
 cat << END >> "$output_file.json" &&
 {
     "server": "$server",
-    "server_port": "$s_port",
+    "server_port": $s_port,
     "local_address": "127.0.0.1",
-    "local_port": "8388",
+    "local_port": 8388,
     "password": "$pass",
-    "timeout": "600",
+    "timeout": 600,
     "method": "$method",
     "fast_open": false
 }
