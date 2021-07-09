@@ -389,6 +389,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" },  "e",     function () awful.spawn(editor_cmd .. " " .. os.getenv("HOME") .. "/.config/awesome/rc.lua") end,
         {description = "Launchs " .. editor .. " with rc.lua", group = "applications"}),
 
+    -- Lanuches Qtcreator
+    awful.key({ modkey, altkey },  "q",     function () awful.spawn("qtcreator") end,
+        {description = "Launchs Qtcreator", group = "applications"}),
+
     -- Launchs setwal script
     awful.key({ modkey, altkey },  "s",     function () awful.spawn.with_shell("$HOME/.local/bin/scripts/setwal") end,
         {description = "Set The Wallpaper", group = "applications"}),
