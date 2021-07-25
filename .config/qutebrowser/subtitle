@@ -1,7 +1,7 @@
 #!/bin/sh
 
 URL="$1"
-curl "$URL" -o "/tmp/film-zip.zip" --socks5-hostname localhost:8388 &&
+curl "$URL" -o "/tmp/film-zip.zip"  &&
   unzip /tmp/film-zip.zip -d "$(cat /tmp/path_file)" && notify-send "Subtitle has been downloaded." &&
 
 #filename=$(pgrep -a "mpv" | awk '{print $NF}')

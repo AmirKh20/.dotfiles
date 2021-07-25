@@ -124,3 +124,5 @@ set termguicolors
 augroup filetypedetect
   au! BufRead,BufNewFile *.m,*.oct set filetype=octave
 augroup END
+
+"set guifont=SauceCodePro\ Nerd\ Font:h9

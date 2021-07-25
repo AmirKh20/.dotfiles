@@ -82,3 +82,7 @@ alias pacQ="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | pacman -Qi -"
 alias parufzfR="paru -Qi | awk '/^Name/{name=\$3} /^Installed Size/{print \$4\$5, name}' | sort -hr | awk '{print \$2}' | fzf --multi --preview 'paru -Qi {1}' | xargs -I % st -e bash -c 'paru -Rns \"%\" && read'"
 alias manfzf="man -k . -s 1 | awk '{print \$1}' | fzf --multi --preview 'man {1}' | xargs -r man"
 alias diff='diff --color=auto'
+
+if [ $TERM = "st-256color" ]; then
+  alias vim="TERM=xterm-256color vim"
+fi

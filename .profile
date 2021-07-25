@@ -26,4 +26,4 @@ export MANPAGER="nvim -c 'set ft=man' -"
 # export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 
 # export .local/bin to PATH
-export PATH="$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/bin/statusbar:$PATH"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts"

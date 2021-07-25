@@ -12,6 +12,11 @@ nnoremap <M-l>    :vertical resize +2<CR>
 "inoremap jk <Esc>
 "inoremap kj <Esc>
 
+" auto parentheses and others closing
+inoremap ( ()<Left>
+inoremap { {}<Left>
+inoremap [ []<Left>
+
 " Easy CAPS
 inoremap <c-u> <ESC>viwUi
 nnoremap <c-u> viwU<Esc>
