@@ -14,7 +14,7 @@ call vundle#begin()
 
 "{{ Syntax Highlighing and Theme }}
     Plugin 'vim-python/python-syntax'                    " Python highlighting
-"    Plugin 'octol/vim-cpp-enhanced-highlight'
+    Plugin 'octol/vim-cpp-enhanced-highlight'
     Plugin 'itchyny/lightline.vim' "lightline stausbar
     "Themes"
     Plugin 'dracula/vim', { 'name': 'dracula' }
