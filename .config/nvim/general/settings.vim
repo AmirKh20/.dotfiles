@@ -126,3 +126,8 @@ augroup filetypedetect
 augroup END
 
 "set guifont=SauceCodePro\ Nerd\ Font:h9
+
+" Setting up vim-latexsuite
+filetype plugin indent on
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"

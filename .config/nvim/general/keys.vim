@@ -72,6 +72,17 @@ noremap <c-w>\|  <c-w>t<c-w>H
 " Map Capital S to Subtitude
 nnoremap S :%s//g<LEFT><LEFT>
 
+" Spell-check set to <leader>o, 'o' for 'orthography':
+map <leader>o :setlocal spell! spelllang=en_us<CR>
+
+" Check file in shellcheck:
+map <leader>s :!clear && shellcheck -x %<CR>
+
+" Compile document, be it groff/LaTeX/markdown/etc.
+map <leader>c :w! \| !compiler "<c-r>%"<CR>
+
+" Open corresponding .pdf/.html or preview
+map <leader>p :!opout <c-r>%<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vifm

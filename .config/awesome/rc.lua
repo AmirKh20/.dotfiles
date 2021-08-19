@@ -125,8 +125,9 @@ myawesomemenu = {
     { "quit", function() awesome.quit() end },
  }
 
-poweroff = os.getenv("HOME") .. "/.local/bin/scripts/prompt 'Are You Sure?' 'systemctl poweroff'"
-reboot = os.getenv("HOME") .. "/.local/bin/scripts/prompt 'Are You Sure?' 'systemctl reboot'"
+poweroff = os.getenv("HOME") .. "/.local/bin/scripts/prompt 'poweroff?' 'systemctl poweroff'"
+reboot = os.getenv("HOME") .. "/.local/bin/scripts/prompt 'reboot?' 'systemctl reboot'"
+hibernate = os.getenv("HOME") .. "/.local/bin/scripts/prompt 'hibernate?' 'systemctl hibernate'"
 mymainmenu = freedesktop.menu.build({
      icon_size = beautiful.menu_height or 16,
      before = {
@@ -137,6 +138,7 @@ mymainmenu = freedesktop.menu.build({
          { "Terminal", terminal },
          { "Log out", function() awesome.quit() end },
          { "Sleep", "systemctl suspend" },
+         { "Hibernate", hibernate },
          { "Reboot", reboot},
          { "Poweroff", poweroff },
          -- other triads can be put here

@@ -26,10 +26,11 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias rg='rg -S'
 
-[ -f ~/.config/shell/shortcuts ] && source ~/.config/shell/shortcuts
+[ -f ~/.config/shell/shortcuts ] && source ~/.config/shell/shortcuts || true
 alias ..='cd ..'
 alias ...='cd ../..'
 alias 3.='cd ../../..'
+alias dr="dirs -v"
 
 alias lvs='sudo lvs'
 alias pvs='sudo pvs'

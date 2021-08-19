@@ -21,6 +21,9 @@ HISTFILE=~/.cache/zsh/zsh_history
 #source the aliases file
 source ~/.config/shell/aliases
 
+# to cache recent directoies to show in dirs command when using cd
+setopt auto_pushd
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -136,7 +139,7 @@ source /usr/share/fzf/completion.zsh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #Broot
-[ -f ~/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br
+[ -f ~/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br || true
 
 #DT's Bash Insulter
-[ -f ~/.local/bin/bash-insulter/src/bash.command-not-found ] && source $HOME/.local/bin/bash-insulter/src/bash.command-not-found
+[ -f ~/.local/bin/bash-insulter/src/bash.command-not-found ] && source $HOME/.local/bin/bash-insulter/src/bash.command-not-found || true
