@@ -71,3 +71,6 @@ enter_to_continue
 
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf >>/dev/null
 echo "blacklist uvcvideo" | sudo tee /etc/modprobe.d/nowebcam.conf >>/dev/null
+
+printf '[global-dns-domain-*]
+servers=9.9.9.9,1.1.1.1,1.0.0.1,2606:4700:4700::1111,2606:4700:4700::1001,2620:fe::fe' | sudo tee /etc/NetworkManager/conf.d/dns-servers.conf >>/dev/null
