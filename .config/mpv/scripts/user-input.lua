@@ -661,4 +661,4 @@ mp.register_script_message("request-user-input", function(response, id, request_
 end)
 
 --temporary keybind for debugging purposes
-mp.add_key_binding("Ctrl+i", "user-input", function() set_active(true) end)
+mp.add_key_binding("Ctrl+u", "user-input", function() set_active(true) end)
