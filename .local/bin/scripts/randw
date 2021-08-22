@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #Watch a Episode randomly
 help(){
   echo "randomly plays a video and play it with VIDEOPLAYER variable or mpv"
@@ -7,5 +7,4 @@ help(){
 }
 [ -z "$1" ] || [ "$1" = "--help" ] || [ "$1" = "-h" ] && help
 
-[ -z "$VIDEOPLAYER" ] && VIDEOPLAYER="mpv"
-find "$1" -type f -name "*.mkv" -or -name "*.mp4" | shuf -n 1 | xargs -I {} "$VIDEOPLAYER" "{}" &> /dev/null
+find "$1" -type f -name "*.mkv" -or -name "*.mp4" | shuf -n 1 | xargs -I {} xdg-open "{}" >/dev/null 2>&1
