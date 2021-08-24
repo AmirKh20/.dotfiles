@@ -6,10 +6,14 @@ help(){
 Options:
 
       -u|--uri [URI]         The URI of the proxy. it starts with ss://
+
       -q|--qrcode [QR code]  The QR code to the URI. For this option 'zbar' package is needed.
+
       -o|--output <FILE_NAME>     output to a json file, FILE_NAME should not be ended with .json extension. This can be also a path.
                     if this option was not specified, the output file name will be the tag in the URI. The tag in the URI starts with a # symbol.
+
       -i|--input  <path/to/file>    URIs listed line by line in a text file. Dont use this option with -o option, instead edit the tags in the input file.
+
       -h|--help                     Shows this help message
 
        if you want to change the local port and add other options to the json file, edit the cat section of this script."
