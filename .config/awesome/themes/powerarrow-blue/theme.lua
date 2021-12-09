@@ -111,7 +111,7 @@ terminal = "st"
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local clock = awful.widget.watch(
-    os.getenv("HOME") .. "/.local/bin/scripts/aw-clock", 60,
+    os.getenv("HOME") .. "/.local/bin/scripts/aw-clock", 30,
     function(widget, stdout)
         widget:set_markup(" " .. markup.fontfg(theme.font,"#FEFEFE", stdout))
     end
