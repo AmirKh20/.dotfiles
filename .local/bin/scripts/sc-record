@@ -1,7 +1,7 @@
 #!/bin/bash
 
 help (){
-echo "Usage: sc-record [Option]
+echo "Usage: sc-record [Option] filename
       Options:
 
           -both     record both mic and speaker(input and output)
@@ -15,12 +15,12 @@ input_index=$(pactl list short sources | awk '/input/ {print $1}')
 output_index=$(pactl list short sources | awk '/output/ {print $1}')
 
 case "$1" in
-  -input) ffmpeg -f x11grab -i :0.0 -f pulse -i "${input_index}" output.mkv
+  -input) ffmpeg -f x11grab -i :0.0 -f pulse -i "${input_index}" "$2"
           ;;
-  -output) ffmpeg -f x11grab -i :0.0 -f pulse -i "${output_index}" output.mkv
+  -output) ffmpeg -f x11grab -i :0.0 -f pulse -i "${output_index}" "$2"
           ;;
   -both) pactl load-module module-loopback &&
-  ffmpeg -f x11grab -i :0.0 -f pulse -i "${output_index}" output.mkv &&
+  ffmpeg -f x11grab -i :0.0 -f pulse -i "${output_index}" "$2" &&
   pactl unload-module module-loopback
           ;;
   --help) help 0

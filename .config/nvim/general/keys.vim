@@ -2,6 +2,8 @@
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
+nnoremap cps i#include <iostream><CR>using namespace std;<CR><CR>int main(){<CR>return 0;<CR>}<Up><Up><Esc>o
+
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>
 nnoremap <M-k>    :resize +2<CR>
@@ -41,7 +43,7 @@ nnoremap <M-TAB> :tabnext<CR>
 " Alternate way to save
 nnoremap <C-s> :w<CR>
 " Alternate way to quit
-nnoremap <C-Q> :q<CR>
+" nnoremap <C-Q> :q<CR>
 
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -49,6 +51,8 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
+
+vnoremap <Leader>C :'<,'>norm 0i//<CR>
 
 " Better window navigation
 nnoremap <C-h> <C-w>h
