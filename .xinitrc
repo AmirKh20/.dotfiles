@@ -37,3 +37,4 @@ xrdb .Xresources &
 
 #exec dwm
 exec awesome
+#exec qtile start -b wayland
