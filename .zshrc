@@ -16,7 +16,7 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # History in cache directory:
 HISTSIZE=10000000
 SAVEHIST=10000000
-HISTFILE=~/.cache/zsh/zsh_history
+HISTFILE=~/.zsh_history
 
 #source the aliases file
 source ~/.config/shell/aliases

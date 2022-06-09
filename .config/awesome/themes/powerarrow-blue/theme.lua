@@ -111,7 +111,7 @@ terminal = "st"
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local clock = awful.widget.watch(
-    os.getenv("HOME") .. "/.local/bin/scripts/aw-clock", 30,
+    os.getenv("HOME") .. "/.local/bin/scripts/aw-clock", 10,
     function(widget, stdout)
         widget:set_markup(" " .. markup.fontfg(theme.font,"#FEFEFE", stdout))
     end
@@ -370,7 +370,7 @@ local net = lain.widget.net({
 neticon:buttons(
     my_table.join(
     awful.button({ }, 1, function() awful.spawn.with_shell(terminal .. " -e \"bmon\"") end),
-    awful.button({ }, 3, function() awful.spawn.with_shell(terminal .. " -e bash -c \"$HOME/.local/bin/speedtest --no-upload --bytes && read key\"") end)
+    awful.button({ }, 3, function() awful.spawn.with_shell(terminal .. " -e bash -c \"speedtest --no-upload --bytes && read key\"") end)
 ))
 
 -- Separators

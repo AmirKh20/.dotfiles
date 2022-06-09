@@ -2,7 +2,7 @@
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
-nnoremap cps i#include <iostream><CR>using namespace std;<CR><CR>int main(){<CR>return 0;<CR>}<Up><Up><Esc>o
+nnoremap cps i#include <iostream><CR><CR>int main()<CR>{<CR>return 0;<CR>}<Up><Up><Esc>o
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>
@@ -135,3 +135,18 @@ map <Leader>G :Goyo<CR>
 " map F <Plug>Sneak_F
 " map t <Plug>Sneak_t
 " map T <Plug>Sneak_T
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Coc snippets
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)

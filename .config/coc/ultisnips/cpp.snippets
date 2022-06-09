@@ -1,0 +1,58 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet cpp "C++ Basic structure" b
+#include <iostream>
+
+int main()
+{
+	${0: //code}
+	return 0;
+}
+endsnippet
+
+snippet cppcontest "C++ Contest Structure" b
+#include <iostream>
+//#include <bits/stdc++.h>
+#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define endl '\n'
+#define int long long
+using namespace std;
+
+void solve()
+{
+	${0://code}
+}
+
+int32_t main()
+{
+	fastio
+	int t{}; cin >> t;
+	while(t--)
+		solve();
+	return 0;
+}
+endsnippet

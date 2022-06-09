@@ -411,8 +411,8 @@ globalkeys = gears.table.join(
         {description = "flameshot launcher", group = "screenshots"}),
 
     --lockscreen
-    awful.key({ }, "F9", function () awful.util.spawn("xlock") end,
-        {description = "lockscreen", group = "awesome"}),
+--    awful.key({ }, "F9", function () awful.util.spawn("xlock") end,
+--        {description = "lockscreen", group = "awesome"}),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp",

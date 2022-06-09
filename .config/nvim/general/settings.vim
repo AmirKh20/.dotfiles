@@ -15,8 +15,8 @@ set splitbelow                          " Horizontal splits will automatically b
 set splitright                          " Vertical splits will automatically be to the right
 set t_Co=256                            " Support 256 colors
 set conceallevel=0                      " So that I can see `` in markdown files
-set tabstop=2                           " Insert 2 spaces for a tab
-set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set tabstop=4                           " Insert 4 spaces for a tab
+set shiftwidth=4                        " Change the number of space characters inserted for indentation
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
 set expandtab                           " Converts tabs to spaces
 set smartindent                         " Makes indenting smart
@@ -43,7 +43,11 @@ set nohlsearch
 set ic                                   " Ignore case sensetive search
 
 set foldenable                           " Setting for folding
-autocmd FileType c,cpp,h,hpp,py,lua,sh setlocal foldmethod=syntax   " Setting for folding
+autocmd FileType c,cpp,h,hpp,py,lua,sh,css,javascript setlocal foldmethod=syntax   " Setting for folding
+autocmd FileType html setlocal foldmethod=indent
+
+autocmd FileType html setlocal tabstop=2
+autocmd FileType html setlocal shiftwidth=2
 
 set nocompatible              " be iMproved, required Vundle Settings
 filetype off                  " required              Vundle Settings
@@ -131,3 +135,10 @@ augroup END
 filetype plugin indent on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
+
+" Coc snippets
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
