@@ -3,6 +3,7 @@
 ## listing aliases
 #alias ls='ls -h --color=auto'
 alias ls='exa -l --color=always --group-directories-first --icons'
+alias sl='ls'
 alias la='exa -al --color=always --group-directories-first --icons'
 alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
 alias l.='exa -a | egrep "^\."'
