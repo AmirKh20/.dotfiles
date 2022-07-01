@@ -51,6 +51,8 @@ autocmd FileType html setlocal shiftwidth=2
 
 set nocompatible              " be iMproved, required Vundle Settings
 filetype off                  " required              Vundle Settings
+
+set wildoptions=pum           "popup menu in vim9
                               " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
