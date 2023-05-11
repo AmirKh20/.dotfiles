@@ -308,45 +308,45 @@ local bat = lain.widget.bat({
 
 
 -- ALSA volume
---local volicon = wibox.widget.imagebox(theme.widget_vol)
---theme.volume = lain.widget.alsa({
---    settings = function()
---        if volume_now.status == "off" then
---            volicon:set_image(theme.widget_vol_mute)
---            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " Muted "))
---        elseif tonumber(volume_now.level) == 0 then
---            volicon:set_image(theme.widget_vol_no)
---            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
---        elseif tonumber(volume_now.level) <= 50 then
---            volicon:set_image(theme.widget_vol_low)
---            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
---        else
---            volicon:set_image(theme.widget_vol)
---            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
---        end
---    end
---})
-
--- PulseAudio
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widget.pulse({
+theme.volume = lain.widget.alsa({
     settings = function()
-        if volume_now.muted == "yes" then
+        if volume_now.status == "off" then
             volicon:set_image(theme.widget_vol_mute)
             widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " Muted "))
-        elseif tonumber(volume_now.left) == 0 then
+        elseif tonumber(volume_now.level) == 0 then
             volicon:set_image(theme.widget_vol_no)
-            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
-        elseif tonumber(volume_now.left) <= 50 then
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
+        elseif tonumber(volume_now.level) <= 50 then
             volicon:set_image(theme.widget_vol_low)
-            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
         else
             volicon:set_image(theme.widget_vol)
-            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.level .. "% "))
         end
-
     end
 })
+
+-- PulseAudio
+--local volicon = wibox.widget.imagebox(theme.widget_vol)
+--theme.volume = lain.widget.pulse({
+--    settings = function()
+--        if volume_now.muted == "yes" then
+--            volicon:set_image(theme.widget_vol_mute)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " Muted "))
+--        elseif tonumber(volume_now.left) == 0 then
+--            volicon:set_image(theme.widget_vol_no)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+--        elseif tonumber(volume_now.left) <= 50 then
+--            volicon:set_image(theme.widget_vol_low)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+--        else
+--            volicon:set_image(theme.widget_vol)
+--            widget:set_markup(markup.fontfg(theme.font,"#FEFEFE", " " .. volume_now.left .. "% "))
+--        end
+--
+--    end
+--})
 volicon:buttons(
         my_table.join(
         awful.button({ }, 1,function () awful.spawn.with_shell(terminal .. " -e pulsemixer") end),
@@ -403,7 +403,7 @@ end
 local pacicon = wibox.widget.imagebox(theme.widget_pacman)
 pacicon:buttons(
         my_table.join(
-        awful.button({ }, 1, function () awful.spawn.with_shell("notify-send \"Please Wait..\" && notify-send -t 7000 \"$(checkupdates && checkupdates-aur)\"")
+        awful.button({ }, 1, function () awful.spawn.with_shell("notify-send \"Please Wait..\" && notify-send -t 7000 \"$(checkupdates && paru -Qua)\"")
 --        awful.spawn.easy_async('bash -c "checkupdates | wc -l"', function(stdout, stderr, reason, exit_code)
 --          pacupdates = widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " ")) end)
 --        awful.spawn.easy_async('bash -c "checkupdates-aur | wc -l"', function(stdout, stderr, reason, exit_code)
@@ -415,7 +415,7 @@ pacicon:buttons(
 pacupdates = awful.widget.watch('bash -c "checkupdates | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "" .. stdout .. " "))
 end)
-aurupdates = awful.widget.watch('bash -c "checkupdates-aur | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
+aurupdates = awful.widget.watch('bash -c "paru -Qua | wc -l"', 900, function(widget, stdout) -- every 15 minutes it checks for updates
     widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", "+" .. stdout .. " "))
 end)
 
