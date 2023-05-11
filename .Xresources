@@ -1,4 +1,3 @@
-!*.alpha: 0.8
 !*.font: "DejaVu Sans Mono"
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
@@ -19,4 +18,8 @@
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
-XTerm.vt100.faceName: Sauce Code Pro Nerd Font Mono:size=10:antialias=true
+XTerm.vt100.faceName: SauceCodePro Nerd Font Mono:size=10:antialias=true
+
+! st settings
+st.alpha: 1
+st.font: SauceCodePro Nerd Font:pixelsize=12:antialias=true:autohint=true;
