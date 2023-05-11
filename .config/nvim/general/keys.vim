@@ -44,7 +44,7 @@ nnoremap <C-s> :w<CR>
 " nnoremap <C-Q> :q<CR>
 
 " <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<TAB>"
 
 " Better tabbing
 vnoremap < <gv
