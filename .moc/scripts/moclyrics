@@ -1,21 +1,36 @@
 #!/bin/bash
 #this works with moc and is in the moc config
 
-file=$(echo "$4" | sed "s/\.flac$\|\.mp3$\|\.aac$\|\.m4a$\|\.ape$\|\.ogg$//")
+choice="$1"
+track="$2"
+artist="$3"
+filepath="$4"
 
-if   [ "$1" = "gl" ]; then
+file=$(echo "$filepath" | sed "s/\.flac$\|\.mp3$\|\.aac$\|\.m4a$\|\.ape$\|\.ogg$\|\.opus$//")
+
+if   [ "$choice" = "gl" ]; then
   if [ -f "$file" ]; then
     notify-send "lyrics exist!"
   else
-      glyrc lyrics -t "$2" -a "$3" -w "$file"
+      notify-send "Started downloading the $track lyrics!" &&
+          glyrc lyrics -t "$track" -a "$artist" -w "$file" > /dev/null 2>&1 &&
+          notify-send "$track Lyrics Downladed!" || notify-send "Could not download the lyrics for " "$track" &
   fi
-elif [ "$1" = "copy" ] && [ -f "$file" ]; then
-       xsel -b < "$file"
-elif [ "$1" = "show" ] && [ -f "$file" ]; then
-     # bat --paging=always --style=header,grid "$file"
-     less -i "$file"
-elif [ "$1" = "cly" ]; then
-      clyrics -m | tee "$file"
+elif [ "$choice" = "copy" ]; then
+  if [ -f "$file" ]; then
+      xsel -b < "$file"
+  else
+      notify-send "Lyrics Doesn't exist!"
+  fi
+elif [ "$choice" = "show" ]; then
+  if [ -f "$file" ]; then
+   # bat --paging=always --style=header,grid "$file"
+      less -i "$file"
+  else
+      notify-send "Lyrics Doesn't exist!"
+  fi
+elif [ "$choice" = "cly" ]; then
+      clyrics "$artist" "$track" | tee "$file"
 else
       exit 1
 fi
