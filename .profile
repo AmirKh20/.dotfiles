@@ -4,7 +4,7 @@ export VISUAL=nvim
 export EDITOR=$VISUAL
 
 export VIDEOPLAYER="mpv"
-export BROWSER="qutebrowser"
+export BROWSER="brave"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
