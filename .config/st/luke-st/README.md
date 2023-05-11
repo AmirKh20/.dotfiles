@@ -11,8 +11,8 @@ features that make it literally the best terminal emulator ever:
 
 ## Bindings for
 
-+ scroll with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the
-  mouse (via [scroll](https://github.com/lukesmithxyz/scroll)).
++ **scrollback** with `alt-↑/↓` or `alt-pageup/down` or `shift` while scrolling the
+  mouse.
 + OR **vim-bindings**: scroll up/down in history with `alt-k` and `alt-j`.
   Faster with `alt-u`/`alt-d`.
 + **zoom/change font size**: same bindings as above, but holding down shift as
@@ -32,7 +32,7 @@ features that make it literally the best terminal emulator ever:
 + Boxdraw
 + Ligatures
 + font2
-+ updated to latest version 0.8.4
++ updated to latest version 0.8.5
 
 ## Installation for newbs
 
@@ -44,14 +44,8 @@ cd st
 sudo make install
 ```
 
-Note that [scroll](https://github.com/lukesmithxyz/scroll) is automatically
-pulled and installed when you make this build of st.
-
-Users of Arch-based distros can also install it from the AUR as
-[st-luke-git](https://aur.archlinux.org/packages/st-luke-git/).
-
 Obviously, `make` is required to build. `fontconfig` is required for the
-default build, since it asks `fontconfig` for your system monospace font.  It
+default build, since it asks `fontconfig` for your system monospace font. It
 might be obvious, but `libX11` and `libXft` are required as well. Chances are,
 you have all of this installed already.
 
@@ -88,16 +82,6 @@ To be clear about the color settings:
 - But if `wal` has run in your session, its colors will take priority.
 
 Note that when you run `wal`, it will negate the transparency of existing windows, but new windows will continue with the previously defined transparency.
-
-## Notes on Emojis and Special Characters
-
-If st crashes when viewing emojis, install
-[libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/) from the AUR.
-
-Note that some special characters may appear truncated if too wide. You might
-want to manually set your prefered emoji/special character font to a lower size
-in the `config.h` file to avoid this. By default, JoyPixels is used at a
-smaller size than the usual text.
 
 ## Contact
 
