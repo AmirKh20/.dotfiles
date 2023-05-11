@@ -376,6 +376,8 @@ config.bind('per', 'hint links spawn persepolis --link {hint-url}')
 
 #Key Binding for shadowsocks proxy (port 8388 in selected for shadowsocks
 config.bind('pr', 'set content.proxy socks://localhost:8388/;; message-info "proxy set to port 8388"')
+#nekoray
+config.bind('pn', 'set content.proxy socks://localhost:2080/;; message-info "proxy set to port 2080"')
 #Key Binding for tor
 config.bind('pt', 'set content.proxy socks://localhost:9050/;; message-info "proxy set to tor"')
 #Back to Default
