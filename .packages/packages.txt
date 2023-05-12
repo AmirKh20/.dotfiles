@@ -43,3 +43,6 @@ htop
 pacman-contrib
 python-adblock
 moc
+mediainfo
+libnotify
+proxychains

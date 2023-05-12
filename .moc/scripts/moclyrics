@@ -12,9 +12,14 @@ if   [ "$choice" = "gl" ]; then
   if [ -f "$file" ]; then
     notify-send "lyrics exist!"
   else
-      notify-send "Started downloading the $track lyrics!" &&
-          glyrc lyrics -t "$track" -a "$artist" -w "$file" > /dev/null 2>&1 &&
-          notify-send "$track Lyrics Downladed!" || notify-send "Could not download the lyrics for " "$track" &
+      if mediainfo "$filepath" | grep -q "Lyrics"; then
+          mediainfo "$filepath" | awk -F: "/Lyrics/ {print \$2}" | sed 's#/#\n#g' > "$file" &&
+              notify-send "$track Lyrics using `mediainfo` created" || notify-send "could not use `mediainfo` for $track" &
+      else
+          notify-send "Started downloading the $track lyrics!" &&
+              proxychains glyrc lyrics -t "$track" -a "$artist" -w "$file" > /dev/null 2>&1 &&
+              notify-send "$track Lyrics Downladed!" || notify-send "Could not download the lyrics for " "$track" &
+      fi
   fi
 elif [ "$choice" = "copy" ]; then
   if [ -f "$file" ]; then

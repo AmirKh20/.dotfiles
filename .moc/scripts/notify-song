@@ -6,7 +6,7 @@ filepath=$(dirname "${file}") #for some reason this variable should be set with 
 if mediainfo "$file" | grep -q -i cover; then
    ffmpeg -i "$file" "${filepath}/cover.jpg"
 else
-  glyrc cover -a "$2" -b "$4" -w "${filepath}/cover.jpg"
+  proxychains glyrc cover -a "$2" -b "$4" -w "${filepath}/cover.jpg"
 fi
 
 notify-send -i "${filepath}/cover.jpg" "Title: $1
