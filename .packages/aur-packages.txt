@@ -8,3 +8,4 @@ nerd-fonts-mononoki
 jcal-git
 fkill
 paru
+pacman-log-orphans-hook
