@@ -85,7 +85,7 @@ terminal = "st"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. "nvim"
 BROWSER1 = "qutebrowser"
-BROWSER2 = "librewolf"
+BROWSER2 = "brave"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -376,9 +376,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- shadowsocks-qt5
-    awful.key({ modkey , altkey},            "h",     function () awful.util.spawn("ss-qt5") end,
-        {description = "Launchs shadowsocks-qt5", group = "applications"}),
+    -- Nekoray
+    awful.key({ modkey , altkey},            "n",     function () awful.util.spawn("nekoray") end,
+        {description = "Launchs Nekoray", group = "applications"}),
     -- Browser
     awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1) tag_focus (1) end,
         {description = "Launchs " .. BROWSER1 , group = "applications"}),
