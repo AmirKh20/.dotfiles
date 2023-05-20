@@ -26,3 +26,4 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # export .local/bin to PATH
 export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts"
+export npm_config_prefix="$HOME/.local"
