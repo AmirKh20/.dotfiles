@@ -411,8 +411,8 @@ globalkeys = gears.table.join(
         {description = "flameshot launcher", group = "screenshots"}),
 
     --lockscreen
---    awful.key({ }, "F9", function () awful.util.spawn("xlock") end,
---        {description = "lockscreen", group = "awesome"}),
+    awful.key({ modkey, altkey }, "l", function () awful.util.spawn("i3lock") end,
+        {description = "lockscreen", group = "awesome"}),
 
     -- Brightness
     awful.key({ }, "XF86MonBrightnessUp",
@@ -717,4 +717,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- Auto Start Apps
-awful.spawn.with_shell("picom --experimental-backend")
+awful.spawn.with_shell("picom")
