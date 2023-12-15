@@ -7,7 +7,7 @@ numlockx
 lxsession
 network-manager-applet
 python-pip
-kvantum-qt5
+kvantum
 awesome
 neovim
 vim
@@ -46,3 +46,9 @@ moc
 mediainfo
 libnotify
 proxychains
+xss-lock
+i3lock
+picom
+broot
+ttf-sourcecodepro-nerd
+ttf-mononoki-nerd
