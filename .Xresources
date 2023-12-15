@@ -18,8 +18,8 @@
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
-XTerm.vt100.faceName: SauceCodePro Nerd Font Mono:size=10:antialias=true
+XTerm.vt100.faceName: SauceCodePro NFM:size=10:antialias=true
 
 ! st settings
 st.alpha: 1
-st.font: SauceCodePro Nerd Font:pixelsize=12:antialias=true:autohint=true;
+st.font: SauceCodePro NF:pixelsize=12:antialias=true:autohint=true;
