@@ -14,7 +14,7 @@ if   [ "$choice" = "gl" ]; then
   else
       if mediainfo "$filepath" | grep -q "Lyrics"; then
           mediainfo "$filepath" | awk -F: "/Lyrics/ {print \$2}" | sed 's#/#\n#g' > "$file" &&
-              notify-send "$track Lyrics using `mediainfo` created" || notify-send "could not use `mediainfo` for $track" &
+              notify-send "$track Lyrics using mediainfo created" || notify-send "could not use mediainfo for $track" &
       else
           notify-send "Started downloading the $track lyrics!" &&
               proxychains glyrc lyrics -t "$track" -a "$artist" -w "$file" > /dev/null 2>&1 &&
