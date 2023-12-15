@@ -27,9 +27,6 @@ cd ~/.packages/ &&
 paru -S --needed - < aur-packages.txt
 enter_to_continue
 
-pip install -r pip-packages.txt
-enter_to_continue
-
 [ ! -d ~/.vim/bundle/Vundle.vim ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && vim +PluginInstall +qall
 enter_to_continue
 
