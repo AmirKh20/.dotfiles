@@ -144,4 +144,4 @@ source /usr/share/fzf/completion.zsh
 #DT's Bash Insulter
 [ -f ~/.local/bin/bash-insulter/src/bash.command-not-found ] && source $HOME/.local/bin/bash-insulter/src/bash.command-not-found || true
 
-source /home/amir/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
