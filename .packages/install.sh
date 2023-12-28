@@ -50,7 +50,12 @@ grep -q "^BottomUp" /etc/paru.conf || sudo sed -i "s/^#BottomUp/BottomUp/" /etc/
 EndSection' | sudo tee /etc/X11/xorg.conf.d/30-touchpad.conf >>/dev/null
 
 sudo systemctl enable lightdm
-grep -q "lightdm-webkit2-greeter" /etc/lightdm/lightdm.conf || sudo sed -i "s/^#greeter-session=.*/greeter-session=lightdm-webkit2-greeter/" /etc/lightdm/lightdm.conf
+grep -q "web-greeter" /etc/lightdm/lightdm.conf || sudo sed -i "s/^#greeter-session=.*/greeter-session=web-greeter/" /etc/lightdm/lightdm.conf
+
+grep -q "shikai" /etc/lightdm/web-greeter.yml || sudo sed -i "s/gruvbox/shikai/" /etc/lightdm/web-greeter.yml
+grep -q "/usr/share/web-greeter/themes/shikai/assets/media/wallpapers/" || sudo sed -i "s#/usr/share/backgrounds#/usr/share/web-greeter/themes/shikai/assets/media/wallpapers/#" /etc/lightdm/web-greeter.yml
+grep -q "/usr/share/web-greeter/themes/shikai/assets/media/logos/" || sudo sed -i "s#/usr/share/web-greeter/themes/default/img/antergos-logo-user.png#/usr/share/web-greeter/themes/shikai/assets/media/logos/#" /etc/lightdm/web-greeter.yml
+
 grep -q "glorious" /etc/lightdm/lightdm-webkit2-greeter.conf || sudo sed -i "s/^webkit_theme.*/webkit_theme        = glorious/" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i "s/^debug_mode.*/debug_mode          = true/" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i "s/^#greeter-setup-script.*/greeter-setup-script=\/usr\/bin\/numlockx on/" /etc/lightdm/lightdm.conf

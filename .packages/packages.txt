@@ -26,7 +26,7 @@ figlet
 glyr
 xsel
 bat
-exa
+eza
 xwallpaper
 sxiv
 python-pywal
@@ -42,10 +42,9 @@ lxappearance
 htop
 pacman-contrib
 python-adblock
-moc
 mediainfo
 libnotify
-proxychains
+proxychains-ng
 xss-lock
 i3lock
 picom
