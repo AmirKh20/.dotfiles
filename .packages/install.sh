@@ -49,6 +49,13 @@ grep -q "^BottomUp" /etc/paru.conf || sudo sed -i "s/^#BottomUp/BottomUp/" /etc/
   Option "ScrollMethod" "edge"
 EndSection' | sudo tee /etc/X11/xorg.conf.d/30-touchpad.conf >>/dev/null
 
+[ ! -f /etc/X11/xorg.conf.d/00-keyboard.conf ] && sudo printf 'Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "us,ir"
+        Option "XkbOptions" "grp:alt_shift_toggle,caps:escape"
+EndSection' | sudo tee /etc/X11/xorg.conf.d/00-keyboard.conf
+
 sudo systemctl enable lightdm
 grep -q "web-greeter" /etc/lightdm/lightdm.conf || sudo sed -i "s/^#greeter-session=.*/greeter-session=web-greeter/" /etc/lightdm/lightdm.conf
 
