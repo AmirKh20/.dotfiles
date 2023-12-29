@@ -19,9 +19,9 @@ let g:NERDTreeWinSize=38
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'dogrun',
       \ }
-colorscheme onedark
+colorscheme dogrun
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Hexokinase
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
