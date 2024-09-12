@@ -18,8 +18,8 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-blue"
 theme.wallpaper                                 = theme.dir .. "/dracula_arch.png"
-theme.font                                      = "Mononoki Nerd Font 8"
-theme.taglist_font                              = "Mononoki Nerd Font 9" --"Droid Sans Regular 8"
+theme.font                                      = "JetBrainsMono Nerd Font 10"
+theme.taglist_font                              = "Mononoki Nerd Font 10" --"Droid Sans Regular 8"
 theme.fg_normal                                 = "#FF79C6"
 theme.fg_focus                                  = "#ffffff"
 theme.fg_urgent                                 = "#b74822"
@@ -230,7 +230,7 @@ cpuicon:buttons(
 
 ))
 --[[ Coretemp (lm_sensors, per core)
-local tempwidget = awful.widget.watch({awful.util.shell, '-c', 'sensors | grep Core'}, 30,
+local temp = awful.widget.watch({awful.util.shell, '-c', 'sensors | grep Core'}, 30,
 function(widget, stdout)
     local temps = ""
     for line in stdout:gmatch("[^\r\n]+") do
@@ -239,6 +239,7 @@ function(widget, stdout)
     widget:set_markup(markup.font(theme.font, " " .. temps))
 end)
 --]]
+
 -- Coretemp (lain, average)
 local temp = lain.widget.temp({
     settings = function()

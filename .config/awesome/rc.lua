@@ -84,8 +84,10 @@ beautiful.init(gears.filesystem.get_themes_dir() .. string.format("%s/theme.lua"
 terminal = "st"
 editor = os.getenv("EDITOR") or "emacs"
 editor_cmd = terminal .. " -e " .. "nvim"
-BROWSER1 = "qutebrowser"
-BROWSER2 = "brave"
+BROWSER1 = "brave"
+BROWSER2 = "qutebrowser"
+FILEMANAGER = "pcmanfm"
+MUSICPLAYER = "strawberry"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -377,10 +379,10 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Nekoray
-    awful.key({ modkey , altkey},            "n",     function () awful.util.spawn("nekoray") end,
-        {description = "Launchs Nekoray", group = "applications"}),
+    awful.key({ modkey , altkey},            "n",     function () awful.util.spawn(os.getenv("HOME") .. "/Downloads/Software/nekoray/nekobox") end,
+        {description = "Launchs Nekobox", group = "applications"}),
     -- Browser
-    awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1) tag_focus (1) end,
+    awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1 .. " " .. "--enable-features=VaapiVideoDecodeLinuxGL") tag_focus (1) end,
         {description = "Launchs " .. BROWSER1 , group = "applications"}),
 
     -- Browser
@@ -455,28 +457,28 @@ globalkeys = gears.table.join(
         end),
 
     -- Audio Media Buttons for mocp
-    awful.key({ }, "XF86AudioPlay", function () awful.spawn.with_shell(os.getenv("HOME") .. "/.moc/scripts/mocmedia") end,
+    awful.key({ }, "XF86AudioPlay", function () awful.spawn.with_shell("playerctl -a play-pause || " .. os.getenv("HOME") .. "/.moc/scripts/mocmedia") end,
         {description = "Play/Pause Music", group = "media buttons"}),
-    awful.key({ }, "XF86AudioStop", function () awful.spawn.with_shell("mocp -s") end,
+    awful.key({ }, "XF86AudioStop", function () awful.spawn.with_shell("playerctl -a stop || " .. "mocp -s") end,
         {description = "Stop Music", group = "media buttons"}),
-    awful.key({ }, "XF86AudioPrev", function () awful.spawn.with_shell("mocp -r") end,
+    awful.key({ }, "XF86AudioPrev", function () awful.spawn.with_shell("playerctl -a previous || " .. "mocp -r") end,
         {description = "Previous Music", group = "media buttons"}),
-    awful.key({ }, "XF86AudioNext", function () awful.spawn.with_shell("mocp -f") end,
+    awful.key({ }, "XF86AudioNext", function () awful.spawn.with_shell("playerctl -a next || " .. "mocp -f") end,
         {description = "Next Music", group = "media buttons"}),
 
     -- Launchs Editor
     awful.key({  modkey, altkey  }, "e",      function () awful.util.spawn(editor_cmd) end,
         {description = "Launchs Editor", group = "applications"}),
     -- Launchs Music Player
-    awful.key({ modkey, altkey  },  "m",     function () awful.util.spawn(terminal .. " -c mocp mocp") tag_focus (4) end,
+    awful.key({ modkey, altkey  },  "m",     function () awful.util.spawn(MUSICPLAYER) tag_focus (4) end,
         {description = "Launchs Mocp", group = "applications"}),
 
     -- Launchs vifm
     awful.key({ modkey, altkey  }, "f", function () awful.spawn.with_shell(terminal .. " -e " .. os.getenv("HOME") .. "/.config/vifm/scripts/vifmrun" ) end,
         {description = "Launchs vifm" , group = "applications" }),
 
-    -- Launchs pcmanfm
-    awful.key({ modkey  }, "e", function () awful.util.spawn( "pcmanfm" ) end,
+    -- Launchs filemanager
+    awful.key({ modkey  }, "e", function () awful.util.spawn(FILEMANAGER) end,
         {description = "Launchs pcmanfm" , group = "applications" }),
 
     -- Launchs Telegram
@@ -492,7 +494,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
+    awful.key({ modkey, "Shift"   }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -718,3 +720,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Auto Start Apps
 awful.spawn.with_shell("picom")
+awful.spawn.with_shell("pgrep fusuma || fusuma")
