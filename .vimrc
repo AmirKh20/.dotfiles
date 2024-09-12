@@ -36,6 +36,8 @@ call vundle#begin()
     Plugin 'honza/vim-snippets'
     Plugin 'ap/vim-buftabline' "Lists Buffers as tabs
     Plugin 'justinmk/vim-sneak'
+    Plugin 'rust-lang/rust.vim'
+    Plugin 'lervag/vimtex'
 
 call vundle#end()            " required
 source ~/.config/nvim/plugins_conf.d/pconfig.vim
