@@ -1,4 +1,3 @@
-
 #export nvim as default editor
 export VISUAL=nvim
 export EDITOR=$VISUAL
@@ -28,5 +27,5 @@ export MANPAGER=less
 #export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
 
 # export .local/bin to PATH
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/share/gem/ruby/3.0.0/bin"
 export npm_config_prefix="$HOME/.local"

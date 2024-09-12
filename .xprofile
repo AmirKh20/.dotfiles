@@ -15,7 +15,7 @@ xset r rate 300 35
 xwallpaper --zoom ~/Pictures/bg
 
 #turn the screen saver off
-xset s off
+#xset s off
 
 #auto mount
 #udiskie -sN &
