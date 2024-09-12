@@ -60,8 +60,8 @@ sudo systemctl enable lightdm
 grep -q "web-greeter" /etc/lightdm/lightdm.conf || sudo sed -i "s/^#greeter-session=.*/greeter-session=web-greeter/" /etc/lightdm/lightdm.conf
 
 grep -q "shikai" /etc/lightdm/web-greeter.yml || sudo sed -i "s/gruvbox/shikai/" /etc/lightdm/web-greeter.yml
-grep -q "/usr/share/web-greeter/themes/shikai/assets/media/wallpapers/" || sudo sed -i "s#/usr/share/backgrounds#/usr/share/web-greeter/themes/shikai/assets/media/wallpapers/#" /etc/lightdm/web-greeter.yml
-grep -q "/usr/share/web-greeter/themes/shikai/assets/media/logos/" || sudo sed -i "s#/usr/share/web-greeter/themes/default/img/antergos-logo-user.png#/usr/share/web-greeter/themes/shikai/assets/media/logos/#" /etc/lightdm/web-greeter.yml
+grep -q "/usr/share/web-greeter/themes/shikai/assets/media/wallpapers/" /etc/lightdm/web-greeter.yml || sudo sed -i "s#/usr/share/backgrounds#/usr/share/web-greeter/themes/shikai/assets/media/wallpapers/#" /etc/lightdm/web-greeter.yml
+grep -q "/usr/share/web-greeter/themes/shikai/assets/media/logos/" /etc/lightdm/web-greeter.yml || sudo sed -i "s#/usr/share/web-greeter/themes/default/img/antergos-logo-user.png#/usr/share/web-greeter/themes/shikai/assets/media/logos/#" /etc/lightdm/web-greeter.yml
 
 grep -q "glorious" /etc/lightdm/lightdm-webkit2-greeter.conf || sudo sed -i "s/^webkit_theme.*/webkit_theme        = glorious/" /etc/lightdm/lightdm-webkit2-greeter.conf
 sudo sed -i "s/^debug_mode.*/debug_mode          = true/" /etc/lightdm/lightdm-webkit2-greeter.conf
@@ -74,9 +74,6 @@ enter_to_continue
 ln -s ~/.config/awesome/themes/powerarrow-blue/starwars.jpg ~/Pictures/bg
 
 [ -f /bin/zsh ] && chsh -s /bin/zsh
-
-systemctl --user enable pulseaudio.service
-enter_to_continue
 
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf >>/dev/null
 echo "blacklist uvcvideo" | sudo tee /etc/modprobe.d/nowebcam.conf >>/dev/null

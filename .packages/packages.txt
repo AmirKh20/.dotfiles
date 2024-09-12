@@ -11,8 +11,6 @@ kvantum
 awesome
 neovim
 vim
-nodejs
-go
 qt5ct
 qutebrowser
 zsh
@@ -51,3 +49,7 @@ picom
 broot
 ttf-sourcecodepro-nerd
 ttf-mononoki-nerd
+acpilight
+xclip
+pipewire-alsa
+pipewire-pulse
