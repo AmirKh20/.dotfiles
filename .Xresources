@@ -22,4 +22,4 @@ XTerm.vt100.faceName: SauceCodePro NFM:size=10:antialias=true
 
 ! st settings
 st.alpha: 1
-st.font: SauceCodePro NF:pixelsize=12:antialias=true:autohint=true;
+st.font: SauceCodePro NF:pixelsize=15:antialias=true:autohint=true;
