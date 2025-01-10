@@ -379,7 +379,7 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
     -- Nekoray
-    awful.key({ modkey , altkey},            "n",     function () awful.util.spawn(os.getenv("HOME") .. "/Downloads/Software/nekoray/nekobox") end,
+    awful.key({ modkey , altkey},            "n",     function () awful.util.spawn("nekoray") end,
         {description = "Launchs Nekobox", group = "applications"}),
     -- Browser
     awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1 .. " " .. "--enable-features=VaapiVideoDecodeLinuxGL") tag_focus (1) end,
