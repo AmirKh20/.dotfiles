@@ -78,10 +78,11 @@ alias pacs='sudo pacman -S'
 alias pacrns='sudo pacman -Rns'
 alias pacsyu='sudo pacman -Syu'
 
-alias parufzfI="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed"
-alias pacfzfI="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
+alias paruI="paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed"
+alias pacI="pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed"
 alias pacQ="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
-alias parufzfR="paru -Qi | awk '/^Name/{name=\$3} /^Installed Size/{print \$4\$5, name}' | sort -hr | awk '{print \$2}' | fzf --multi --preview 'paru -Qi {1}' | xargs -I % st -e bash -c 'paru -Rns \"%\" && read'"
+alias pacRu="pacman -Qdtq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+alias paruR="paru -Qi | awk '/^Name/{name=\$3} /^Installed Size/{print \$4\$5, name}' | sort -hr | awk '{print \$2}' | fzf --multi --preview 'paru -Qi {1}' | xargs -I % st -e bash -c 'paru -Rns \"%\" && read'"
 alias manfzf="man -k . -s 1 | awk '{print \$1}' | fzf --multi --preview 'man {1}' | xargs -r man"
 alias diff='diff --color=auto'
 
