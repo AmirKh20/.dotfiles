@@ -7,5 +7,6 @@ fkill
 paru
 pacman-log-orphans-hook
 ttf-meslo-nerd-font-powerlevel10k
-web-greeter-theme-shikai
+shikai-theme
+web-greeter
 moc-pulse
