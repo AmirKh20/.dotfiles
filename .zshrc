@@ -141,15 +141,7 @@ source /usr/share/fzf/completion.zsh
 #Broot
 [ -f ~/.config/broot/launcher/bash/br ] && source $HOME/.config/broot/launcher/bash/br || true
 
-#DT's Bash Insulter
-[ -f ~/.local/bin/bash-insulter/src/bash.command-not-found ] && source $HOME/.local/bin/bash-insulter/src/bash.command-not-found || true
-
-source $HOME/.config/broot/launcher/bash/br
-
 # using rsync for file transfer between systems
 cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 }
-
-# Conda
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
