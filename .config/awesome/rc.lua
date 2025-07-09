@@ -378,9 +378,9 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    -- Nekoray
-    awful.key({ modkey , altkey},            "n",     function () awful.util.spawn("nekoray") end,
-        {description = "Launchs Nekobox", group = "applications"}),
+    -- HIddify
+    awful.key({ modkey , altkey},            "h",     function () awful.util.spawn("hiddify") end,
+        {description = "Launchs HIddify", group = "applications"}),
     -- Browser
     awful.key({ modkey },            "b",     function () awful.util.spawn(BROWSER1 .. " " .. "--enable-features=VaapiVideoDecodeLinuxGL") tag_focus (1) end,
         {description = "Launchs " .. BROWSER1 , group = "applications"}),
