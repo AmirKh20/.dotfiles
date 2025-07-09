@@ -433,7 +433,7 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
             --os.execute(string.format("amixer -q set %s 3%%+", beautiful.volume.channel)) --for alsa
-            os.execute("pamixer --allow-boost -i 3")
+            os.execute("pamixer --allow-boost -i 1")
             if #awful.screen.focused().clients > 0 and screen[1].clients[1].fullscreen then
                 awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)%\"")
             end
@@ -443,7 +443,7 @@ globalkeys = gears.table.join(
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
             --os.execute(string.format("amixer -q set %s 3%%-", beautiful.volume.channel)) --for alsa
-            os.execute("pamixer --allow-boost -d 3")
+            os.execute("pamixer --allow-boost -d 1")
             if #awful.screen.focused().clients > 0 and screen[1].clients[1].fullscreen then
                 awful.spawn.with_shell("notify-send -t 500 \"Current Volume Level:\" \"$(pamixer --get-volume)%\"")
             end
