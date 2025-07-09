@@ -482,7 +482,7 @@ globalkeys = gears.table.join(
         {description = "Launchs pcmanfm" , group = "applications" }),
 
     -- Launchs Telegram
-    awful.key({ modkey, altkey },  "t",     function () awful.util.spawn("telegram-desktop") tag_focus (6) end,
+    awful.key({ modkey, altkey },  "t",     function () awful.util.spawn("Telegram") tag_focus (6) end,
         {description = "Launchs telegram", group = "applications"})
 
 )
