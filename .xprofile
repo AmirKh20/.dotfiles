@@ -12,7 +12,8 @@ xset r rate 300 35
 #setxkbmap -option caps:escape,grp:alt_shift_toggle -layout us,ir
 
 #set the last wallpaper
-xwallpaper --zoom ~/Pictures/bg
+xwallpaper --output DP-2 --zoom ~/Pictures/bg-DP-2
+xwallpaper --output eDP-1 --zoom ~/Pictures/bg-eDP-1
 
 #turn the screen saver off
 #xset s off
