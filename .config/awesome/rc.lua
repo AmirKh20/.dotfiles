@@ -412,6 +412,9 @@ globalkeys = gears.table.join(
     awful.key({ "Shift" }, "Print", function () awful.util.spawn("flameshot gui") end,
         {description = "flameshot launcher", group = "screenshots"}),
 
+    awful.key({ "Shift" }, "F12", function () awful.util.spawn("flameshot gui") end,
+        {description = "flameshot launcher", group = "screenshots"}),
+
     --lockscreen
     awful.key({ modkey, altkey }, "l", function () awful.util.spawn("i3lock") end,
         {description = "lockscreen", group = "awesome"}),
