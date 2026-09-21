@@ -145,3 +145,5 @@ source /usr/share/fzf/completion.zsh
 cpr() {
   rsync --archive -hh --partial --info=stats1,progress2 --modify-window=1 "$@"
 }
+
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh || true
